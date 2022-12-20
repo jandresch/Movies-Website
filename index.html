@@ -11,19 +11,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="header-texts">
-            <h2>My Movies</h2>
-            <p>Películas</p>
-            <p>Series</p>
-        </div>
-        <label for="searchBar" class="header__search-bar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" name="searchBar" id="searchBar">
-        </label>
-    </header>
     <main>
-
+        <nav>
+            <div class="nav-texts">
+                <h1>My Movies</h1>
+                <p>Películas</p>
+                <p>Series</p>
+            </div>
+            <label for="searchBar" class="nav_search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="searchBar" id="searchBar">
+            </label>
+        </nav>
+        <section class="main_movies_section">
+            <div class="main_movies-container">
+                <div class="movie-information">
+                    <h2>Titulo de la pelicula</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quasi rem hic sapiente dicta quo quibusdam nihil dolores architecto nam adipisci corrupti, laudantium ipsa consequatur aperiam numquam fuga accusamus ipsum.</p>
+                    <button class="button">Ver Información<i class="fa-solid fa-circle-play"></i></button>
+                </div>
+                <div class="main_movies_list-container">
+                    <span class="arrow_container"><i class="fa-solid fa-chevron-left"></i></span>
+                    <ul class="movies_list">
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                        <li class="movie-card"></li>
+                    </ul>
+                    <span class="arrow_container"><i class="fa-solid fa-chevron-right"></i></span>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
 
