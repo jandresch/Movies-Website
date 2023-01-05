@@ -176,11 +176,13 @@ nav{
     list-style: none;
 
 }
-.movies_list .movie-card{
+.movie-card{
     width: 240px;
     height: 360px;
     margin: 12px 12px;
     border-radius: 8px;
+    background-position: center;
+    background-size: cover;
     background-color: #F6EDAC;
 }
 .movies_list .movie-card:hover{
