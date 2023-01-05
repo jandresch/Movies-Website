@@ -13,11 +13,23 @@
 <body>
     <main>
         <nav>
-            <div class="nav-texts">
+            <section id="navTexts" class="nav-texts">
                 <h1>My Movies</h1>
-                <p>Películas</p>
-                <p>Series</p>
-            </div>
+                <div class="nav_categories-movies">
+                    <p>Películas</p>
+                    <div class="nav_categories-container movies inactive">
+                        
+                        <div></div>
+                    </div>
+                </div>
+                <div class="nav_categories-series">
+                    <p>Series</p>
+                    <div class="nav_categories-container series inactive">
+                        
+                        <div></div>
+                    </div>
+                </div>
+            </section>
             <label for="searchBar" class="nav_search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="search" name="searchBar" id="searchBar">
@@ -33,13 +45,14 @@
                 <div class="main_movies_list-container">
                     <span class="arrow_container"><i class="fa-solid fa-chevron-left"></i></span>
                     <ul id="moviesList" class="movies_list">
-                        <li class="movie-card"><figcaption>HOla</figcaption></li>
+                        <!-- <li class="movie-card"><figcaption>HOla</figcaption></li> -->
                     </ul>
                     <span class="arrow_container"><i class="fa-solid fa-chevron-right"></i></span>
                 </div>
             </div>
         </section>
     </main>
+
     <footer>
 
     </footer>

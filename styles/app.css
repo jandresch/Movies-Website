@@ -39,6 +39,9 @@ p{
     font-weight: var(--font-regular);
     color: var(--soft-yellow);
 }
+li{
+    list-style: none;
+}
 .button{
     width: 320px;
     height: 60px;
@@ -56,6 +59,9 @@ p{
 .button:hover{
     transform: scale(0.95);
     transition: 500ms;
+}
+.inactive{
+    display: none !important;
 }
 /* Navbar */
 nav{
@@ -82,6 +88,29 @@ nav{
 .nav-texts p:hover{
     cursor: pointer;
     text-decoration: underline;
+}
+.nav_categories-container{
+    width: fit-content;
+    height: auto;
+    margin: 24px;
+    padding: 12px;
+    position: absolute;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: var(--yellow);
+    background-color: var(--blue);
+    box-shadow: 4px 4px 5px var(--dark-blue);
+}
+.nav_categories-container div{
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -4px;
+    z-index: -1;
+    border-radius: 4px;
+    background-color: inherit;
 }
 .nav_search-bar{
     width: 480px;
@@ -147,7 +176,6 @@ nav{
     width: auto;
     height: auto;
     display: flex;
-    /* background-color: #122227; */
     overflow-x: scroll;
     overflow-y: visible;
     overscroll-behavior-x: contain;
@@ -159,6 +187,7 @@ nav{
     place-items: center;
     position: sticky;
     left: 0px;
+    z-index: 1;
     background-color: #8A3C00;
 }
 .arrow_container i {
