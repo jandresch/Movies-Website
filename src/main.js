@@ -25,11 +25,9 @@ async function getMoviesCategoriesList(){
 
     const categories = data.genres;
     categories.forEach(category => {
-        console.log(category);
         const categoryContainer = document.createElement('li');
         categoryContainer.classList.add('categorie-container');
         categoryContainer.setAttribute('id', category.id);
-
         const categoryTitle = document.createTextNode(category.name);
 
         categoryContainer.appendChild(categoryTitle);
@@ -43,11 +41,9 @@ async function getSeriesCategoriesList(){
 
     const categories = data.genres;
     categories.forEach(category => {
-        console.log(category);
         const categoryContainer = document.createElement('li');
         categoryContainer.classList.add('categorie-container');
         categoryContainer.setAttribute('id', category.id);
-
         const categoryTitle = document.createTextNode(category.name);
 
         categoryContainer.appendChild(categoryTitle);
