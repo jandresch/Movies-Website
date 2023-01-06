@@ -7,6 +7,7 @@
     --yellow: #E7C73D;
     --orange: #E36E15;
     --dark-orange: #8A3C00;
+    --opacity-orange: rgba(227, 110, 21, 0.8);
 
     --font-regular: 400;
     --font-medium: 500;
@@ -105,6 +106,14 @@ nav{
     background-color: var(--blue);
     box-shadow: 4px 4px 5px var(--dark-blue);
 }
+.category-container{
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.category-container:hover{
+    cursor: pointer;
+    background-color: var(--dark-blue);
+}
 .nav_categories-container div{
     width: 20px;
     height: 20px;
@@ -143,14 +152,17 @@ nav{
     width: 100%;
     height: 125vh;
     background-color: #E36E15;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 .main_movies-container{
     width: 100%;
     height: 100%;
-    display: grid;
+    /* display: grid;
     grid-template-rows: 2fr auto;
-    grid-template-columns: 1fr 1fr;
-    background: linear-gradient(180deg, rgba(255,255,255,0), var(--opacity-dark-blue));
+    grid-template-columns: 1fr 1fr; */
+    background: linear-gradient(180deg, var(--opacity-blue), var(--opacity-dark-blue));
 }
 .movie-information{
     grid-column: 2 / 3;
@@ -192,7 +204,7 @@ nav{
     position: sticky;
     left: 0px;
     z-index: 1;
-    background-color: #8A3C00;
+    background-color: var(--opacity-orange);
 }
 .arrow_container i {
     width: 30px;
