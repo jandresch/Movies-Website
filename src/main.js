@@ -1,9 +1,4 @@
-const moviesCategoriesBtn = document.querySelector('#navTexts .nav_categories-movies');
-const moviesCategoriesList = document.querySelector('.nav_categories-movies .movies');
-const seriesCategoriesBtn = document.querySelector('#navTexts .nav_categories-series');
-const seriesCategoriesList = document.querySelector('.nav_categories-series .series');
-const mainMoviesBg = document.querySelector('.main_movies_section')
-const moviesList = document.getElementById('moviesList');
+
 
 async function getTrendingMovies(){
     const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);

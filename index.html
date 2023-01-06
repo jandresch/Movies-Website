@@ -12,31 +12,30 @@
 </head>
 <body>
     <main>
-
+        <nav>
+            <section id="navTexts" class="nav-texts">
+                <h1>My Movies</h1>
+                <div class="nav_categories-movies">
+                    <p>Movies</p>
+                    <div class="nav_categories-container movies inactive">
+                        
+                        <div></div>
+                    </div>
+                </div>
+                <div class="nav_categories-series">
+                    <p>Series</p>
+                    <div class="nav_categories-container series inactive">
+                        
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+            <label for="searchBar" class="nav_search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="searchBar" id="searchBar">
+            </label>
+        </nav>
         <section class="main_movies_section">
-            <nav>
-                <section id="navTexts" class="nav-texts">
-                    <h1>My Movies</h1>
-                    <div class="nav_categories-movies">
-                        <p>Movies</p>
-                        <div class="nav_categories-container movies inactive">
-                            
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="nav_categories-series">
-                        <p>Series</p>
-                        <div class="nav_categories-container series inactive">
-                            
-                            <div></div>
-                        </div>
-                    </div>
-                </section>
-                <label for="searchBar" class="nav_search-bar">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" name="searchBar" id="searchBar">
-                </label>
-            </nav>
             <div class="main_movies-container">
                 <!-- <div class="movie-information">
                     <h2>Titulo de la pelicula</h2>
@@ -59,6 +58,7 @@
     </footer>
 
     <script src="./src/ignore.js"></script>
+    <script src="./src/components.js"></script>
     <script src="./src/main.js"></script>
     <script src="./src/navigation.js"></script>
     <script src="https://kit.fontawesome.com/441c4bfaeb.js" crossorigin="anonymous"></script>
