@@ -70,7 +70,7 @@ hr{
     margin: 0px 8px;
     border: 1px solid var(--orange);
 }
-.button:hover{
+button:hover{
     transform: scale(0.95);
     transition: 500ms;
 }
@@ -89,7 +89,6 @@ nav{
     top: 0px;
     z-index: 2;
     background-color: var(--dark-blue);
-    /* background-color: var(--opacity-dark-blue); */
 }
 .nav-texts{
     height: auto;
@@ -162,6 +161,12 @@ nav{
     background-color: var(--soft-yellow);
 }
 /* Main section */
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .main_movies_section{
     width: 100%;
     height: auto;
@@ -234,7 +239,6 @@ nav{
     left: 0px;
     z-index: 1;
     background-color: var(--opacity-dark-blue);
-    /* background-color: var(--opacity-orange); */
 }
 .arrow_container i {
     width: 30px;
@@ -265,9 +269,12 @@ nav{
 }
 .movie_card-name{
     width: 100%;
-    height: 90px;
-    display: grid;
-    place-content: center;
+    height: 25%;
+    /* height: 90px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-size: 2rem;
     line-height: 2.4rem;
     font-weight: var(--font-semi-bold);
@@ -275,20 +282,45 @@ nav{
     border-radius: 0px 0px 8px 8px; 
     color: var(--orange);
     background-color: var(--opacity-dark-blue);
+    transition: 500ms ease-in-out;
 }
-.movies_list .movie_card-name:hover{
-    animation: focusMovie 500ms;
+.movies_list .movie_card-hover{
+    height: 100%;
+    border-radius: 8px;
+    transition: 500ms;
 }
-@keyframes focusMovie {
-    0%{
-        height: 90px;
-    }
-    100%{
-        height: 100%;
-        border-radius: 8px;
-    }
+/* General Home Section */
+.general_movies_section{
+    width: 88vw;
+    height: auto;
+}
+.general_movies-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.general_movies_section hr{
+    width: 100%;
+    margin: 0px;
+}
+.general_movies-container{
+    width: 100%;
+    height: auto;
+    margin: 12px 0px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 180px);
+    grid-template-rows: auto;
+    justify-items: center;
+    gap: 18px;
+}
+.general_movies-container .movie-card{
+ width: 180px;
+ height: 240px;
 }
 footer{
     width: 100%;
-    height: 100vh;
+    height: 100px;
 }

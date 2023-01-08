@@ -13,14 +13,31 @@ async function getTrendingMovies(){
         const movieContainer = document.createElement('li');
         const movieTitleContainer = document.createElement('figcaption');
         const movieTitle = document.createTextNode(movie.title);
+        const moreInfoBtn = document.createElement('button');
+        const btnInfoText = document.createTextNode('more info');
+
         movieContainer.classList.add('movie-card');
         movieContainer.setAttribute('id', movie.id);
         movieContainer.setAttribute('style', `background-image: url('${poster}');`);
         movieTitleContainer.classList.add('movie_card-name');
+        moreInfoBtn.classList.add('inactive');
+
         moviesList.appendChild(movieContainer)
         movieContainer.appendChild(movieTitleContainer);
         movieTitleContainer.appendChild(movieTitle);
-        movieContainer.addEventListener('click', () =>{mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`)});
+        movieTitleContainer.appendChild(moreInfoBtn);
+        moreInfoBtn.appendChild(btnInfoText);
+
+        // movieContainer.addEventListener('click', () =>{mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`)});
+        movieContainer.addEventListener('mouseover', () => {
+            movieTitleContainer.classList.add('movie_card-hover');
+            moreInfoBtn.classList.remove('inactive');
+            mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`)
+        });
+        movieContainer.addEventListener('mouseout', () => {
+            movieTitleContainer.classList.remove('movie_card-hover');
+            moreInfoBtn.classList.add('inactive'); 
+        })
     });
 }
 
