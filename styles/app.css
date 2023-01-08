@@ -35,6 +35,11 @@ h2{
     font-weight: var(--font-semi-bold);
     color: var(--yellow);
 }
+h3{
+    font-size: 2.8rem;
+    font-weight: var(--font-semi-bold);
+    color: var(--orange);
+}
 p{
     font-size: 2rem;
     font-weight: var(--font-regular);
@@ -43,19 +48,27 @@ p{
 li{
     list-style: none;
 }
-.button{
-    width: 320px;
-    height: 60px;
+button{
+    width: fit-content;
+    height: auto;
+    margin: 8px;
+    padding: 8px;
     font-size: 1.6rem;
-    font-weight: var(--font-medium);
+    font-weight: var(--font-semi-bold);
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: 500ms;
     background-color: var(--orange);
-    color: white;
+    color: var(--dark-orange);
+}
+hr{
+    width: 500px;
+    height: 2px;
+    margin: 0px 8px;
+    border: 1px solid var(--orange);
 }
 .button:hover{
     transform: scale(0.95);
@@ -72,10 +85,11 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: sticky;
     top: 0px;
     z-index: 2;
-    background-color: var(--opacity-dark-blue);
+    background-color: var(--dark-blue);
+    /* background-color: var(--opacity-dark-blue); */
 }
 .nav-texts{
     height: auto;
@@ -150,18 +164,19 @@ nav{
 /* Main section */
 .main_movies_section{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    /* background-position: ; */
     background-color: #E36E15;
 
 }
 .main_movies-container{
     width: 100%;
-    height: 100%;
-    display: grid;
-    place-content: center;
+    height: auto;
+    padding: 20px 12px 48px;
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(180deg, var(--opacity-blue), var(--dark-blue));
 }
 /* .movie-information{
@@ -187,9 +202,24 @@ nav{
     margin: 8px;
     color: var(--dark-orange);
 } */
+.trending-header{
+    width: 100%;
+    height: auto;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.trending-header h2{
+    display: flex;
+    align-items: center;
+}
+.trends-button i{
+    margin-left: 8px;
+}
 .main_movies_list-container{
     width: auto;
     height: fit-content;
+    margin: 8px 0px;
     display: flex;
     overflow-x: scroll;
     overflow-y: visible;
@@ -225,14 +255,38 @@ nav{
 .movie-card{
     width: 240px;
     height: 360px;
-    margin: 12px 12px;
+    margin: 0px 12px;
+    display: flex;
+    align-items: end;
     border-radius: 8px;
     background-position: center;
     background-size: cover;
     background-color: #F6EDAC;
 }
-.movies_list .movie-card:hover{
-    transform: scale(0.99);
+.movie_card-name{
+    width: 100%;
+    height: 90px;
+    display: grid;
+    place-content: center;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: var(--font-semi-bold);
+    text-align: center;
+    border-radius: 0px 0px 8px 8px; 
+    color: var(--orange);
+    background-color: var(--opacity-dark-blue);
+}
+.movies_list .movie_card-name:hover{
+    animation: focusMovie 500ms;
+}
+@keyframes focusMovie {
+    0%{
+        height: 90px;
+    }
+    100%{
+        height: 100%;
+        border-radius: 8px;
+    }
 }
 footer{
     width: 100%;

@@ -3,17 +3,23 @@
 async function getTrendingMovies(){
     const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
     const data = await response.json();
-
     const movies = data.results;
-    movies.forEach(movie => {
+
+    const moviesPreview = movies.slice(0, 9);
+    moviesPreview.forEach(movie => {
         console.log(movie)
+        const poster = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
         const bgPoster = 'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path;
         const movieContainer = document.createElement('li');
+        const movieTitleContainer = document.createElement('figcaption');
+        const movieTitle = document.createTextNode(movie.title);
         movieContainer.classList.add('movie-card');
         movieContainer.setAttribute('id', movie.id);
-        // movieContainer.setAttribute('style', `    background-image: url('${bgPoster}');`);
-        movieContainer.setAttribute('style', `    background-image: url('https://image.tmdb.org/t/p/w300/${movie.poster_path}');`);
+        movieContainer.setAttribute('style', `background-image: url('${poster}');`);
+        movieTitleContainer.classList.add('movie_card-name');
         moviesList.appendChild(movieContainer)
+        movieContainer.appendChild(movieTitleContainer);
+        movieTitleContainer.appendChild(movieTitle);
         movieContainer.addEventListener('click', () =>{mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`)});
     });
 }
