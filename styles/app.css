@@ -183,29 +183,6 @@ main{
     flex-direction: column;
     background: linear-gradient(180deg, var(--opacity-blue), var(--dark-blue));
 }
-/* .movie-information{
-    grid-column: 2 / 3;
-    place-self: center;
-    width: 400px;
-    height: auto;
-    margin: 40px;
-    display: flex;
-    flex-direction: column;
-}
-.movie-information h2{
-    margin-bottom: 12px;
-}
-.movie-information p{
-    font-size: 1.6rem;
-    margin-bottom: 16px;
-}
-.movie-information .button{
-    align-self: center;
-}
-.button i{
-    margin: 8px;
-    color: var(--dark-orange);
-} */
 .trending-header{
     width: 100%;
     height: auto;
@@ -217,7 +194,7 @@ main{
     display: flex;
     align-items: center;
 }
-.trends-button i{
+button i{
     margin-left: 8px;
 }
 .main_movies_list-container{
@@ -255,7 +232,7 @@ main{
     list-style: none;
 
 }
-.movie-card{
+.card{
     width: 240px;
     height: 360px;
     margin: 0px 12px;
@@ -266,7 +243,7 @@ main{
     background-size: cover;
     background-color: #F6EDAC;
 }
-.movie_card-name{
+.card-name{
     width: 100%;
     height: 25%;
     display: flex;
@@ -282,28 +259,29 @@ main{
     background-color: var(--opacity-dark-blue);
     transition: 500ms ease-in-out;
 }
-.movies_list .movie_card-hover{
+.movies_list .card-hover{
     height: 100%;
     border-radius: 8px;
     transition: 500ms;
 }
 /* General Home Section */
-.general_movies_section{
+.general_section{
     width: 88vw;
     height: auto;
+    margin-bottom: 24px;
 }
-.general_movies-header{
+.general_section-header{
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.general_movies_section hr{
+.general_section hr{
     width: 100%;
     margin: 0px;
 }
-.general_movies-container{
+.general_section-container{
     width: 100%;
     height: auto;
     margin: 12px 0px;
@@ -314,24 +292,26 @@ main{
     justify-items: center;
     gap: 18px;
 }
-.general_movies-container .movie-card{
+.general_section-container .card{
     width: 180px;
     height: 240px;
 }
-.general_movies-container .movie_card-hover{
+.general_section-container .card-hover{
     height: 100%;
     border-radius: 8px;
     transition: 500ms;
 }
-.general_movies-container .movie_card-name{
+.general_section-container .card-name{
     font-size: 1.2rem;
     line-height: 1.6rem;
 }
+
 /* footer */
 .footer_section{
     width: 100%;
     height: auto;
     padding: 12px;
+    margin-top: 24px;
     font-size: 1.6rem;
     background-color: var(--dark-blue);
     border-top: solid 1px var(--yellow);
