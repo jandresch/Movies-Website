@@ -172,7 +172,6 @@ main{
     height: auto;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-position: ; */
     background-color: #E36E15;
 
 }
@@ -270,7 +269,6 @@ main{
 .movie_card-name{
     width: 100%;
     height: 25%;
-    /* height: 90px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -317,10 +315,48 @@ main{
     gap: 18px;
 }
 .general_movies-container .movie-card{
- width: 180px;
- height: 240px;
+    width: 180px;
+    height: 240px;
 }
-footer{
+.general_movies-container .movie_card-hover{
+    height: 100%;
+    border-radius: 8px;
+    transition: 500ms;
+}
+.general_movies-container .movie_card-name{
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+}
+/* footer */
+.footer_section{
     width: 100%;
-    height: 100px;
+    height: auto;
+    padding: 12px;
+    font-size: 1.6rem;
+    background-color: var(--dark-blue);
+    border-top: solid 1px var(--yellow);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.footer_section .personal_info{
+    place-self: center start;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.personal_info a, .personal-logo a, .date{
+    text-decoration: none;
+    color: var(--yellow);
+}
+.footer_section .personal-logo{
+    place-self: center;
+    width: auto;
+    height: auto;
+    font-size: 1.6rem;
+}
+.footer_section .date{
+    place-self: center end;
+    width: auto;
+    height: auto;
 }
