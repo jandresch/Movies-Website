@@ -1,3 +1,4 @@
+const main = document.querySelector('main');
 const moviesCategoriesBtn = document.querySelector('#navTexts .nav_categories-movies');
 const moviesCategoriesList = document.querySelector('.nav_categories-movies .movies');
 const seriesCategoriesBtn = document.querySelector('#navTexts .nav_categories-series');

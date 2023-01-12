@@ -34,6 +34,8 @@ h2{
     font-size: 3.6rem;
     font-weight: var(--font-semi-bold);
     color: var(--yellow);
+    display: flex;
+    align-items: center;
 }
 h3{
     font-size: 2.8rem;
@@ -73,6 +75,9 @@ hr{
 button:hover{
     transform: scale(0.95);
     transition: 500ms;
+}
+i{
+    margin: 0px 8px;
 }
 .inactive{
     display: none !important;
@@ -189,13 +194,6 @@ main{
     padding: 0px 20px;
     display: flex;
     justify-content: space-between;
-}
-.trending-header h2{
-    display: flex;
-    align-items: center;
-}
-button i{
-    margin-left: 8px;
 }
 .main_movies_list-container{
     width: auto;
