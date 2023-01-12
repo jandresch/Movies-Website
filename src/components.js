@@ -1,3 +1,4 @@
+// Components from HTML document
 const main = document.querySelector('main');
 const moviesCategoriesBtn = document.querySelector('#navTexts .nav_categories-movies');
 const moviesCategoriesList = document.querySelector('.nav_categories-movies .movies');
@@ -13,3 +14,35 @@ const moreSeriesBtn = document.getElementById('moreSeriesBtn');
 const moviesList = document.getElementById('moviesList');
 const popularMoviesContainer = document.getElementById('popularMoviesContainer');
 const popularSeriesContainer = document.getElementById('popularSeriesContainer');
+
+// Components from JS
+const generalSection = document.createElement('section');
+const generalHeaderContainer = document.createElement('div');
+const generalHeaderTextContainer = document.createElement('h3');
+const generalSectionLine = document.createElement('hr');
+const backHomeBtn = document.createElement('button');
+const backHomeIcon = document.createElement('i');
+const backHomeBtnText = document.createTextNode('Home');
+const generalSectionContentContainer = document.createElement('div');
+const generalSectionPageBtns = document.createElement('div');
+const previousBtn = document.createElement('button');
+const previousBtnIcon = document.createElement('i');
+const pageNum = document.createElement('strong');
+const nextBtn = document.createElement('button');
+const nextBtnIcon = document.createElement('i');
+
+{/* <div class="btnsSection">
+                <button id="previousBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="nextBnt"><i class="fa-solid fa-chevron-right"></i></button>
+</div> */}
+generalSection.classList.add('general_section');
+generalSection.classList.add('inactive');
+generalHeaderContainer.classList.add('general_section-header');
+backHomeIcon.classList.add('fa-solid', 'fa-arrow-left');
+generalSectionContentContainer.classList.add('general_section-container');
+generalSectionPageBtns.classList.add('btnsSection');
+previousBtnIcon.classList.add('fa-solid', 'fa-chevron-left');
+nextBtnIcon.classList.add('fa-solid', 'fa-chevron-right');
+
+
+backHomeBtn.setAttribute('id', 'backHomeBtn');

@@ -21,73 +21,89 @@ function navigate(){
 
 function homeLocation(){
     console.log('Estas en el home');
-    generalSection.innerHTML = '';
     trendingMoviesSection.classList.remove('inactive');
     generalMoviesSection.classList.remove('inactive');
     generalSeriesSection.classList.remove('inactive');
     generalSection.classList.add('inactive')
+
+    getPopularMoviesList(1);
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
     moreSeriesBtn.onclick = () => {location.hash = 'series'};
 }
-// <section id="trendingMoviesSection" class="general_section">
-//             <div class="general_section-header">
-//                 <h2>Trending Movies <hr></h2>
-//                 <button id="backHomeBtn" class="home-button"><i class="fa-solid fa-arrow-left"></i> Home</button>
-//             </div>
-//             <div id="trendingMoviesContainer" class="general_section-container">
-//                 <li class="movie-card"><figcaption class="movie_card-name movie_card-hover">HOla <button class="inactive">more info</button></figcaption></li>
-//             </div>
-//         </section>>
-const generalSection = document.createElement('section');
-const generalHeaderContainer = document.createElement('div');
-const generalHeaderTextContainer = document.createElement('h3');
-const generalSectionLine = document.createElement('hr');
-const backHomeBtn = document.createElement('button');
-const backHomeIcon = document.createElement('i');
-const backHomeBtnText = document.createTextNode('Home');
-const generalSectionContentContainer = document.createElement('div');
-
-generalSection.classList.add('general_section');
-generalSection.classList.add('inactive');
-generalHeaderContainer.classList.add('general_section-header');
-backHomeIcon.classList.add('fa-solid');
-backHomeIcon.classList.add('fa-arrow-left')
-generalSectionContentContainer.classList.add('general_section-container');
-backHomeBtn.setAttribute('id', 'backHomeBtn');
-
-
-
-
-
-
 
 function trendingSection(){
-    generalSection.innerHTML = '';
-    getAllTrendingMovies()
     const generalHeaderTitle = document.createTextNode('Trending Movies');
+
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSection.setAttribute('id', 'trendingMoviesSection');
+    
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
-    
     generalSection.classList.remove('inactive');
-    
-    main.appendChild(generalSection)
-    generalSection.append(generalHeaderContainer, generalSectionContentContainer);
-    generalHeaderContainer.appendChild(generalHeaderTextContainer);
-    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
-    generalHeaderContainer.appendChild(backHomeBtn);
-    backHomeBtn.append(backHomeIcon, backHomeBtnText);
-    generalSection.setAttribute('id', 'trendingMoviesSection');
 
+    getAllTrendingMovies()
     backHomeBtn.onclick = () => {location.hash = 'home'};
-    
+
 }
 
+let numberOfPage = 1;
+
 function moviesSection(){
+
+    const generalHeaderTitle = document.createTextNode('Movies');
+    const pageNumber = document.createTextNode(numberOfPage);
+
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    pageNum.innerHTML = '';
+
+
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSectionPageBtns.append(previousBtn, pageNum, nextBtn);
+    previousBtn.appendChild(previousBtnIcon);
+    pageNum.appendChild(pageNumber);
+    nextBtn.appendChild(nextBtnIcon);
+    generalSection.setAttribute('id', 'moviesSection');
+
     trendingMoviesSection.classList.add('inactive');
-    generalMoviesSection.classList.remove('inactive');
+    generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
+
+    getPopularMoviesList(numberOfPage);
+    backHomeBtn.onclick = () => {location.hash = 'home'};
+
+        previousBtn.onclick = () => {
+            if(numberOfPage > 1){
+                numberOfPage--; 
+                console.log(numberOfPage); 
+                moviesSection()
+            }
+        }
+            
+        nextBtn.onclick = () => {
+            if(numberOfPage < 6){
+                numberOfPage++; 
+                console.log(numberOfPage); 
+                moviesSection()}
+            }
+    
 }
 
 function seriesSection(){

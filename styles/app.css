@@ -79,6 +79,10 @@ button:hover{
 i{
     margin: 0px 8px;
 }
+strong{
+    font-size: 2.4rem;
+    color: white;
+}
 .inactive{
     display: none !important;
 }
@@ -303,6 +307,19 @@ main{
     font-size: 1.2rem;
     line-height: 1.6rem;
 }
+.general_section .btnsSection{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnsSection button{
+    width: 40px;
+    height: 40px;
+    margin: 0px 16px;
+    border-radius: 50%;
+}
 
 /* footer */
 .footer_section{
@@ -311,10 +328,12 @@ main{
     padding: 12px;
     margin-top: 24px;
     font-size: 1.6rem;
-    background-color: var(--dark-blue);
-    border-top: solid 1px var(--yellow);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* position: absolute;
+    bottom: 0; */
+    background-color: var(--dark-blue);
+    border-top: solid 1px var(--yellow);
 }
 .footer_section .personal_info{
     place-self: center start;

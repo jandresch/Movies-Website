@@ -73,11 +73,10 @@ async function getTrendingMovies(){
 }
 
 async function getAllTrendingMovies(){
-    const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
-    // const response = await fetch(`${mainUrl}/movie/day?api_key=${API_KEY}`);
+    const response = await fetch(`${mainUrl}/trending/movie/week?api_key=${API_KEY}`);
     const data = await response.json();
     const movies = data.results;
-    console.log(response)
+
     movies.forEach(movie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
         const movieContainer = document.createElement('li');
@@ -110,10 +109,12 @@ async function getAllTrendingMovies(){
 }
 
 
-async function getPopularMoviesList(){
-    const response = await fetch(mainUrl + '/movie/popular?api_key=' + API_KEY);
+async function getPopularMoviesList(numPage){
+    const response = await fetch(`${mainUrl}/movie/popular?api_key=${API_KEY}&page=${numPage}`);
     const data = await response.json();
     const movies = data.results;
+
+    popularMoviesContainer.innerHTML ='';
 
     movies.forEach(movie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
@@ -129,7 +130,13 @@ async function getPopularMoviesList(){
         movieTitleContainer.classList.add('card-name');
         moreInfoBtn.classList.add('inactive');
 
-        popularMoviesContainer.appendChild(movieContainer)
+        if(location.hash.startsWith('#movies')){
+            generalSectionContentContainer.appendChild(movieContainer)
+        }else{
+            popularMoviesContainer.appendChild(movieContainer);
+        }
+        
+        // popularMoviesContainer.appendChild(movieContainer)
         movieContainer.appendChild(movieTitleContainer);
         movieTitleContainer.appendChild(movieTitle);
         movieTitleContainer.appendChild(moreInfoBtn);
