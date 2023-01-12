@@ -136,7 +136,6 @@ async function getPopularMoviesList(numPage){
             popularMoviesContainer.appendChild(movieContainer);
         }
         
-        // popularMoviesContainer.appendChild(movieContainer)
         movieContainer.appendChild(movieTitleContainer);
         movieTitleContainer.appendChild(movieTitle);
         movieTitleContainer.appendChild(moreInfoBtn);
@@ -153,10 +152,12 @@ async function getPopularMoviesList(numPage){
     })
 }
 
-async function getPopularSeriesList(){
-    const response = await fetch(mainUrl + '/tv/popular?api_key=' + API_KEY);
+async function getPopularSeriesList(numPage){
+    const response = await fetch(`${mainUrl}/tv/popular?api_key=${API_KEY}&page=${numPage}`);
     const data = await response.json();
     const series = data.results;
+
+    popularMoviesContainer.innerHTML ='';
 
     series.forEach(serie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + serie.poster_path;
@@ -172,7 +173,12 @@ async function getPopularSeriesList(){
         serieTitleContainer.classList.add('card-name');
         moreInfoBtn.classList.add('inactive');
 
-        popularSeriesContainer.appendChild(serieContainer)
+        if(location.hash.startsWith('#series')){
+            generalSectionContentContainer.appendChild(serieContainer)
+        }else{
+            popularSeriesContainer.appendChild(serieContainer);
+        }
+
         serieContainer.appendChild(serieTitleContainer);
         serieTitleContainer.appendChild(serieTitle);
         serieTitleContainer.appendChild(moreInfoBtn);

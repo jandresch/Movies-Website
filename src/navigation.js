@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', navigate);
 window.addEventListener('hashchange', navigate);
+let numberOfCurrentPage = 1;
 
 function navigate(){
     if(location.hash.startsWith('#home')){
@@ -21,11 +22,13 @@ function navigate(){
 
 function homeLocation(){
     console.log('Estas en el home');
+    numberOfCurrentPage = 1;
     trendingMoviesSection.classList.remove('inactive');
     generalMoviesSection.classList.remove('inactive');
     generalSeriesSection.classList.remove('inactive');
     generalSection.classList.add('inactive')
 
+    getPopularMoviesList(1);
     getPopularMoviesList(1);
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
@@ -57,18 +60,14 @@ function trendingSection(){
 
 }
 
-let numberOfPage = 1;
-
 function moviesSection(){
 
     const generalHeaderTitle = document.createTextNode('Movies');
-    const pageNumber = document.createTextNode(numberOfPage);
-
+    const pageNumber = document.createTextNode(numberOfCurrentPage);
 
     generalHeaderTextContainer.innerHTML = '';
     generalSectionContentContainer.innerHTML = '';
     pageNum.innerHTML = '';
-
 
     main.appendChild(generalSection);
     generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
@@ -86,28 +85,65 @@ function moviesSection(){
     generalSeriesSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
-    getPopularMoviesList(numberOfPage);
+    getPopularMoviesList(numberOfCurrentPage);
     backHomeBtn.onclick = () => {location.hash = 'home'};
 
         previousBtn.onclick = () => {
-            if(numberOfPage > 1){
-                numberOfPage--; 
-                console.log(numberOfPage); 
+            if(numberOfCurrentPage > 1){
+                numberOfCurrentPage--; 
+                console.log(numberOfCurrentPage); 
                 moviesSection()
             }
         }
             
         nextBtn.onclick = () => {
-            if(numberOfPage < 6){
-                numberOfPage++; 
-                console.log(numberOfPage); 
+            if(numberOfCurrentPage < 6){
+                numberOfCurrentPage++; 
+                console.log(numberOfCurrentPage); 
                 moviesSection()}
-            }
+        }
     
 }
 
 function seriesSection(){
+    const generalHeaderTitle = document.createTextNode('Series');
+    const pageNumber = document.createTextNode(numberOfCurrentPage);
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    pageNum.innerHTML = '';
+
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSectionPageBtns.append(previousBtn, pageNum, nextBtn);
+    previousBtn.appendChild(previousBtnIcon);
+    pageNum.appendChild(pageNumber);
+    nextBtn.appendChild(nextBtnIcon);
+    generalSection.setAttribute('id', 'moviesSection');
+
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
-    generalSeriesSection.classList.remove('inactive');   
+    generalSeriesSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
+
+    getPopularSeriesList(numberOfCurrentPage)
+    backHomeBtn.onclick = () => {location.hash = 'home'};
+
+        previousBtn.onclick = () => {
+            if(numberOfCurrentPage > 1){
+                numberOfCurrentPage--; 
+                console.log(numberOfCurrentPage); 
+                seriesSection()
+            }
+        }
+            
+        nextBtn.onclick = () => {
+            if(numberOfCurrentPage < 6){
+                numberOfCurrentPage++; 
+                console.log(numberOfCurrentPage); 
+                seriesSection()}
+        } 
 }
