@@ -14,6 +14,9 @@ function navigate(){
     }else if(location.hash.startsWith('#series')){
         console.log('Estas en las series');
         seriesSection();
+    }else if(location.hash.startsWith('#category')){
+        console.log('Estas en las categorias');
+        categoriesSection();
     }else{
         console.log('Estas en el home');
         homeLocation();
@@ -29,7 +32,7 @@ function homeLocation(){
     generalSection.classList.add('inactive')
 
     getPopularMoviesList(1);
-    getPopularMoviesList(1);
+    getPopularSeriesList(1);
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
     moreSeriesBtn.onclick = () => {location.hash = 'series'};
@@ -147,3 +150,7 @@ function seriesSection(){
                 seriesSection()}
         } 
 }
+
+function categoriesSection(){
+    
+};

@@ -222,6 +222,7 @@ main{
     width: 30px;
     font-size: 1.6rem;
     text-align: center;
+    margin: 0px;
     color: var(--orange);
 }
 .main_movies_list-container span:nth-last-of-type(1){

@@ -3,8 +3,8 @@ const mainUrl = 'https://api.themoviedb.org/3';
 async function getMoviesCategoriesList(){
     const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY);
     const data = await response.json();
-
     const categories = data.genres;
+
     categories.forEach(category => {
         const categoryContainer = document.createElement('li');
         categoryContainer.classList.add('category-container');
@@ -19,8 +19,8 @@ async function getMoviesCategoriesList(){
 async function getSeriesCategoriesList(){
     const response = await fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=' + API_KEY);
     const data = await response.json();
-
     const categories = data.genres;
+
     categories.forEach(category => {
         const categoryContainer = document.createElement('li');
         categoryContainer.classList.add('category-container');
@@ -157,7 +157,7 @@ async function getPopularSeriesList(numPage){
     const data = await response.json();
     const series = data.results;
 
-    popularMoviesContainer.innerHTML ='';
+    popularSeriesContainer.innerHTML ='';
 
     series.forEach(serie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + serie.poster_path;
@@ -201,27 +201,27 @@ getTrendingMovies();
 getPopularMoviesList();
 getPopularSeriesList();
 
-function focusMovie(contenido){
-    console.log('maldicion ' + contenido);
-}
-
-function toggleInactiveAtribute(component){
-    component.classList.toggle('inactive');
-}
-
-moviesCategoriesBtn.onclick = () => {
-    toggleInactiveAtribute(moviesCategoriesList);
+moviesCategoriesBtn.addEventListener('mouseover', () => {
+    moviesCategoriesList.classList.remove('inactive');
 
     if(!seriesCategoriesList.classList.contains('inactive')){
-        toggleInactiveAtribute(seriesCategoriesList);
+        seriesCategoriesList.classList.add('inactive');
+        // toggleInactiveAtribute(moviesCategoriesList);
     };
-};
+});
+moviesCategoriesList.addEventListener('mouseout', () => {
+    moviesCategoriesList.classList.add('inactive'); 
+});
 
-seriesCategoriesBtn.onclick = () => {
-    toggleInactiveAtribute(seriesCategoriesList);
+seriesCategoriesBtn.addEventListener('mouseover', () => {
+    seriesCategoriesList.classList.remove('inactive');
 
     if(!moviesCategoriesList.classList.contains('inactive')){
-        toggleInactiveAtribute(moviesCategoriesList);
+        moviesCategoriesList.classList.add('inactive');
     };
-}
+});
+seriesCategoriesList.addEventListener('mouseout', () => {
+    seriesCategoriesList.classList.add('inactive'); 
+});
+
 
