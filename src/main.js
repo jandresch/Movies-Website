@@ -200,7 +200,47 @@ async function getMovieInformation(movieId){
     const response = await fetch(`${mainUrl}/movie/${movieId}?api_key=${API_KEY}`);
     const movie = await response.json();
 
+    movieGeneralContainer.innerHTML = "";
     console.log(movie);
+//     <section class="general_section more_info-section">
+//     <button>Hola sapos</button>
+//     <div class="movie_general-container">
+//         <div class="movie_left_section"></div>
+//         <div class="movie_right_section"></div>
+//     </div>
+//     <div class="related-movies"></div>
+// </section>
+    
+
+    const selectMovieLeftSection = document.createElement('div');
+    const selectMovieRightSection = document.createElement('div');
+    const relatedMoviesSection = document.createElement('div');
+    const moviePoster = document.createElement('img');
+    const movieCategories = document.createElement('ul');
+    const movieCategoriesTitle = document.createElement('strong');
+    const movieCategoriesTitleText = document.createTextNode('Categories')
+    
+    generalSection.classList.add('more_info-section')
+    selectMovieLeftSection.classList.add('movie_left_section');
+    selectMovieRightSection.classList.add('movie_right_section');
+    moviePoster.classList.add('card');
+    moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+
+    generalSection.append(backHomeBtn, movieGeneralContainer, relatedMoviesSection);
+    movieGeneralContainer.append(selectMovieLeftSection, selectMovieRightSection);
+    selectMovieLeftSection.append(moviePoster, movieCategories);
+    movieCategories.appendChild(movieCategoriesTitle);
+    movieCategoriesTitle.appendChild(movieCategoriesTitleText);
+
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+
+    movie.genres.forEach(genre => {
+        const categoriesElement = document.createElement('li');
+        const genreTitle = document.createTextNode(genre.name);
+        categoriesElement.appendChild(genreTitle);
+        movieCategories.append(categoriesElement);
+    })
+
 }
 
 getMoviesCategoriesList();

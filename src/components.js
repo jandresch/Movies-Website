@@ -36,6 +36,8 @@ const pageNum = document.createElement('strong');
 const nextBtn = document.createElement('button');
 const nextBtnIcon = document.createElement('i');
 
+const movieGeneralContainer = document.createElement('div');
+
 
 generalSection.classList.add('general_section');
 generalSection.classList.add('inactive');
@@ -45,6 +47,8 @@ generalSectionContentContainer.classList.add('general_section-container');
 generalSectionPageBtns.classList.add('btnsSection');
 previousBtnIcon.classList.add('fa-solid', 'fa-chevron-left');
 nextBtnIcon.classList.add('fa-solid', 'fa-chevron-right');
+
+movieGeneralContainer.classList.add('movie_general-container')
 
 
 backHomeBtn.setAttribute('id', 'backHomeBtn');

@@ -187,11 +187,14 @@ function moreInfoSection(){
     const [_, movieId] = location.hash.split("/");
     console.log(movieId);
 
+    main.appendChild(generalSection);
+
+
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
-    
+
     getMovieInformation(movieId);
 }
 
