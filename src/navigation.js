@@ -17,10 +17,40 @@ function navigate(){
     }else if(location.hash.startsWith('#category')){
         console.log('Estas en las categorias');
         categoriesSection();
+    }else if(location.hash.startsWith('#more-info')){
+        console.log('Estas en more-info');
+        moreInfoSection();
     }else{
         console.log('Estas en el home');
         homeLocation();
     }
+
+    showNavbarCategoriesList();
+    searchBarBtn.onclick = () => {alert(searchBar.value)}
+}
+
+function showNavbarCategoriesList(){
+    moviesCategoriesBtn.addEventListener('mouseover', () => {
+        moviesCategoriesList.classList.remove('inactive');
+    
+        if(!seriesCategoriesList.classList.contains('inactive')){
+            seriesCategoriesList.classList.add('inactive');
+        };
+    });
+    moviesCategoriesList.addEventListener('mouseout', () => {
+        moviesCategoriesList.classList.add('inactive'); 
+    });
+    
+    seriesCategoriesBtn.addEventListener('mouseover', () => {
+        seriesCategoriesList.classList.remove('inactive');
+    
+        if(!moviesCategoriesList.classList.contains('inactive')){
+            moviesCategoriesList.classList.add('inactive');
+        };
+    });
+    seriesCategoriesList.addEventListener('mouseout', () => {
+        seriesCategoriesList.classList.add('inactive'); 
+    });
 }
 
 function homeLocation(){
@@ -36,6 +66,8 @@ function homeLocation(){
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
     moreSeriesBtn.onclick = () => {location.hash = 'series'};
+    trendingArrowLeftContainer.onclick = () => {scrollTrendingList.ascrollLeft =- 240};
+    trendingArrowRightContainer.onclick = () => {scrollTrendingList.scrollLeft += 240};
 }
 
 function trendingSection(){
@@ -151,6 +183,23 @@ function seriesSection(){
         } 
 }
 
-function categoriesSection(){
+function moreInfoSection(){
+    const [_, movieId] = location.hash.split("/");
+    console.log(movieId);
+
+    trendingMoviesSection.classList.add('inactive');
+    generalMoviesSection.classList.add('inactive');
+    generalSeriesSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
     
+    getMovieInformation(movieId);
+}
+
+function categoriesSection(){
+
 };
+
+
+// arrowBtn.addEventListener('click', () => {
+//     location.hash = window.history.back();
+//  });

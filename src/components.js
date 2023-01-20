@@ -4,8 +4,13 @@ const moviesCategoriesBtn = document.querySelector('#navTexts .nav_categories-mo
 const moviesCategoriesList = document.querySelector('.nav_categories-movies .movies');
 const seriesCategoriesBtn = document.querySelector('#navTexts .nav_categories-series');
 const seriesCategoriesList = document.querySelector('.nav_categories-series .series');
+const searchBar = document.getElementById('searchBar');
+const searchBarBtn = document.getElementById('searchBarBtn');
 const mainMoviesBg = document.querySelector('.main_movies_section');
 const trendingMoviesSection = document.getElementById('trendingMoviesSection');
+const trendingArrowLeftContainer = document.getElementById('trendingArrowLeftContainer');
+const trendingArrowRightContainer = document.getElementById('trendingArrowRightContainer');
+const scrollTrendingList = document.querySelector('.main_movies_list-container')
 const generalMoviesSection = document.getElementById('generalMoviesSection');
 const generalSeriesSection = document.getElementById('generalSeriesSection');
 const moreTrendsBtn = document.getElementById('trendsBtn');
@@ -31,10 +36,7 @@ const pageNum = document.createElement('strong');
 const nextBtn = document.createElement('button');
 const nextBtnIcon = document.createElement('i');
 
-{/* <div class="btnsSection">
-                <button id="previousBtn"><i class="fa-solid fa-chevron-left"></i></button>
-                <button id="nextBnt"><i class="fa-solid fa-chevron-right"></i></button>
-</div> */}
+
 generalSection.classList.add('general_section');
 generalSection.classList.add('inactive');
 generalHeaderContainer.classList.add('general_section-header');

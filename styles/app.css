@@ -241,6 +241,7 @@ main{
     margin: 0px 12px;
     display: flex;
     align-items: end;
+    /* border: solid 2px var(--orange); */
     border-radius: 8px;
     background-position: center;
     background-size: cover;

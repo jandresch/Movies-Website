@@ -68,7 +68,8 @@ async function getTrendingMovies(){
         movieContainer.addEventListener('mouseout', () => {
             movieTitleContainer.classList.remove('card-hover');
             moreInfoBtn.classList.add('inactive'); 
-        })
+        });
+        moreInfoBtn.onclick = () => {location.hash = `more-info=${movie.original_title}/${movie.id}`};
     });
 }
 
@@ -195,33 +196,20 @@ async function getPopularSeriesList(numPage){
     })
 }
 
+async function getMovieInformation(movieId){
+    const response = await fetch(`${mainUrl}/movie/${movieId}?api_key=${API_KEY}`);
+    const movie = await response.json();
+
+    console.log(movie);
+}
+
 getMoviesCategoriesList();
 getSeriesCategoriesList();
 getTrendingMovies();
 getPopularMoviesList();
 getPopularSeriesList();
 
-moviesCategoriesBtn.addEventListener('mouseover', () => {
-    moviesCategoriesList.classList.remove('inactive');
 
-    if(!seriesCategoriesList.classList.contains('inactive')){
-        seriesCategoriesList.classList.add('inactive');
-        // toggleInactiveAtribute(moviesCategoriesList);
-    };
-});
-moviesCategoriesList.addEventListener('mouseout', () => {
-    moviesCategoriesList.classList.add('inactive'); 
-});
 
-seriesCategoriesBtn.addEventListener('mouseover', () => {
-    seriesCategoriesList.classList.remove('inactive');
-
-    if(!moviesCategoriesList.classList.contains('inactive')){
-        moviesCategoriesList.classList.add('inactive');
-    };
-});
-seriesCategoriesList.addEventListener('mouseout', () => {
-    seriesCategoriesList.classList.add('inactive'); 
-});
 
 
