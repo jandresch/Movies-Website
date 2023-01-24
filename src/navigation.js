@@ -66,8 +66,12 @@ function homeLocation(){
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
     moreSeriesBtn.onclick = () => {location.hash = 'series'};
-    trendingArrowLeftContainer.onclick = () => {scrollTrendingList.ascrollLeft =- 240};
-    trendingArrowRightContainer.onclick = () => {scrollTrendingList.scrollLeft += 240};
+    trendingArrowLeftContainer.onclick = () => {
+        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - 320, 0);
+    };
+    trendingArrowRightContainer.onclick = () => {
+        scrollTrendingList.scroll(scrollTrendingList.scrollLeft + 320, 0);
+    };
 }
 
 function trendingSection(){

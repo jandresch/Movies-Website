@@ -207,6 +207,8 @@ main{
     overflow-x: scroll;
     overflow-y: visible;
     overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
 }
 .arrow_container{
     width: 30px;
