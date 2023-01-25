@@ -289,7 +289,7 @@ async function getSerieInformation(serieId){
     const selectedSerieRightSection = document.createElement('div');
     const relatedSeriesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
-    const movieTagline = document.createElement('strong');
+    const serieTagline = document.createElement('strong');
     const serieCategories = document.createElement('ul');
     const serieCategoriesTitle = document.createElement('strong');
     const serieTitle = document.createElement('h2');
@@ -308,7 +308,7 @@ async function getSerieInformation(serieId){
     selectedSerieRightSection.classList.add('movie_right_section');
     moviePoster.classList.add('card');
     moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${serie.poster_path}`);
-    movieTagline.innerText = serie.tagline;
+    serieTagline.innerText = serie.tagline;
     serieCategoriesTitle.innerText = 'Categories';
     serieTitle.innerText = serie.name;
     serieOverview.innerText = serie.overview;
@@ -324,7 +324,7 @@ async function getSerieInformation(serieId){
 
     generalSection.append(backHomeBtn, movieGeneralContainer, relatedSeriesSection);
     movieGeneralContainer.append(selectedSerieLeftSection, selectedSerieRightSection);
-    selectedSerieLeftSection.append(moviePoster, );
+    selectedSerieLeftSection.append(moviePoster, serieTagline);
     serieCategories.appendChild(serieCategoriesTitle);
     selectedSerieRightSection.append(
         serieTitle,
