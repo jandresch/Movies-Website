@@ -97,6 +97,7 @@ nav{
     position: sticky;
     top: 0px;
     z-index: 2;
+    border-bottom: 1px solid var(--orange);
     background-color: var(--dark-blue);
 }
 .nav-texts{
@@ -274,7 +275,8 @@ main{
 .general_section{
     width: 88vw;
     height: auto;
-    margin-bottom: 24px;
+    margin: 24px 0px;
+    /* margin-bottom: 24px; */
 }
 .general_section-header{
     width: 100%;

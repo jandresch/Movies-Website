@@ -69,7 +69,10 @@ async function getTrendingMovies(){
             movieTitleContainer.classList.remove('card-hover');
             moreInfoBtn.classList.add('inactive'); 
         });
-        moreInfoBtn.onclick = () => {location.hash = `more-info=${movie.original_title}/${movie.id}`};
+        moreInfoBtn.addEventListener('click',() => {
+            location.hash = `more-info=movie/${movie.original_title}/${movie.id}`;
+        });
+        // moreInfoBtn.onclick = () => {location.hash = `more-info=${movie.original_title}/${movie.id}`};
     });
 }
 
@@ -105,7 +108,10 @@ async function getAllTrendingMovies(){
         movieContainer.addEventListener('mouseout', () => {
             movieTitleContainer.classList.remove('card-hover');
             moreInfoBtn.classList.add('inactive'); 
-        })
+        });
+        moreInfoBtn.addEventListener('click',() => {
+            location.hash = `more-info=movie/${movie.original_title}/${movie.id}`;
+        });
     });
 }
 
@@ -149,7 +155,10 @@ async function getPopularMoviesList(numPage){
         movieContainer.addEventListener('mouseout', () => {
             movieTitleContainer.classList.remove('card-hover');
             moreInfoBtn.classList.add('inactive'); 
-        })
+        });
+        moreInfoBtn.addEventListener('click',() => {
+            location.hash = `more-info=movie/${movie.original_title}/${movie.id}`;
+        });
     })
 }
 
@@ -157,7 +166,6 @@ async function getPopularSeriesList(numPage){
     const response = await fetch(`${mainUrl}/tv/popular?api_key=${API_KEY}&page=${numPage}`);
     const data = await response.json();
     const series = data.results;
-
     popularSeriesContainer.innerHTML ='';
 
     series.forEach(serie => {
@@ -192,7 +200,10 @@ async function getPopularSeriesList(numPage){
         serieContainer.addEventListener('mouseout', () => {
             serieTitleContainer.classList.remove('card-hover');
             moreInfoBtn.classList.add('inactive'); 
-        })
+        });
+        moreInfoBtn.addEventListener('click',() => {
+            location.hash = `more-info=serie/${serie.name}/${serie.id}`;
+        });
     })
 }
 
@@ -202,18 +213,9 @@ async function getMovieInformation(movieId){
 
     movieGeneralContainer.innerHTML = "";
     console.log(movie);
-//     <section class="general_section more_info-section">
-//     <button>Hola sapos</button>
-//     <div class="movie_general-container">
-//         <div class="movie_left_section"></div>
-//         <div class="movie_right_section"></div>
-//     </div>
-//     <div class="related-movies"></div>
-// </section>
     
-
-    const selectMovieLeftSection = document.createElement('div');
-    const selectMovieRightSection = document.createElement('div');
+    const selectedMovieLeftSection = document.createElement('div');
+    const selectedMovieRightSection = document.createElement('div');
     const relatedMoviesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
     const movieCategories = document.createElement('ul');
@@ -221,14 +223,14 @@ async function getMovieInformation(movieId){
     const movieCategoriesTitleText = document.createTextNode('Categories')
     
     generalSection.classList.add('more_info-section')
-    selectMovieLeftSection.classList.add('movie_left_section');
-    selectMovieRightSection.classList.add('movie_right_section');
+    selectedMovieLeftSection.classList.add('movie_left_section');
+    selectedMovieRightSection.classList.add('movie_right_section');
     moviePoster.classList.add('card');
     moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
 
     generalSection.append(backHomeBtn, movieGeneralContainer, relatedMoviesSection);
-    movieGeneralContainer.append(selectMovieLeftSection, selectMovieRightSection);
-    selectMovieLeftSection.append(moviePoster, movieCategories);
+    movieGeneralContainer.append(selectedMovieLeftSection, selectedMovieRightSection);
+    selectedMovieLeftSection.append(moviePoster, movieCategories);
     movieCategories.appendChild(movieCategoriesTitle);
     movieCategoriesTitle.appendChild(movieCategoriesTitleText);
 
@@ -241,7 +243,45 @@ async function getMovieInformation(movieId){
         movieCategories.append(categoriesElement);
     })
 
-}
+};
+
+// editar la seccion con todos sus componenetes 
+async function getSerieInformation(serieId){
+    const response = await fetch(`${mainUrl}/tv/${serieId}?api_key=${API_KEY}`);
+    const serie = await response.json();
+
+    movieGeneralContainer.innerHTML = "";
+    console.log(serie);
+    
+    const selectedSerieLeftSection = document.createElement('div');
+    const selectedSerieRightSection = document.createElement('div');
+    const relatedSeriesSection = document.createElement('div');
+    const moviePoster = document.createElement('img');
+    const movieCategories = document.createElement('ul');
+    const movieCategoriesTitle = document.createElement('strong');
+    const movieCategoriesTitleText = document.createTextNode('Categories')
+    
+    generalSection.classList.add('more_info-section')
+    selectedSerieLeftSection.classList.add('movie_left_section');
+    selectedSerieRightSection.classList.add('movie_right_section');
+    moviePoster.classList.add('card');
+    moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${serie.poster_path}`);
+
+    generalSection.append(backHomeBtn, movieGeneralContainer, relatedSeriesSection);
+    movieGeneralContainer.append(selectedSerieLeftSection, selectedSerieRightSection);
+    selectedSerieLeftSection.append(moviePoster, movieCategories);
+    movieCategories.appendChild(movieCategoriesTitle);
+    movieCategoriesTitle.appendChild(movieCategoriesTitleText);
+
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+
+    serie.genres.forEach(genre => {
+        const categoriesElement = document.createElement('li');
+        const genreTitle = document.createTextNode(genre.name);
+        categoriesElement.appendChild(genreTitle);
+        movieCategories.append(categoriesElement);
+    })
+};
 
 getMoviesCategoriesList();
 getSeriesCategoriesList();

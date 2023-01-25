@@ -188,8 +188,9 @@ function seriesSection(){
 }
 
 function moreInfoSection(){
-    const [_, movieId] = location.hash.split("/");
-    console.log(movieId);
+    const [category, _, elementId] = location.hash.split("/");
+    console.log(category);
+    console.log(elementId);
 
     main.appendChild(generalSection);
 
@@ -199,7 +200,14 @@ function moreInfoSection(){
     generalSeriesSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
-    getMovieInformation(movieId);
+
+    if(category.endsWith('movie')){
+        getMovieInformation(elementId);
+    }else if(category.endsWith('serie')){
+        getSerieInformation(elementId);
+        console.log('moda foca')
+    }
+    backHomeBtn.onclick = () => {location.hash = 'home'};
 }
 
 function categoriesSection(){
