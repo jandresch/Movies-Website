@@ -218,22 +218,54 @@ async function getMovieInformation(movieId){
     const selectedMovieRightSection = document.createElement('div');
     const relatedMoviesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
+    const movieTagline = document.createElement('strong');
     const movieCategories = document.createElement('ul');
     const movieCategoriesTitle = document.createElement('strong');
-    const movieCategoriesTitleText = document.createTextNode('Categories')
+    const movieTitle = document.createElement('h2');
+    const movieOverview = document.createElement('p');
+    const movieOriginalTitleContainer = document.createElement('strong');
+    const movieOriginalTitle = document.createElement('span');
+    const movieLanguageContainer = document.createElement('strong');
+    const movieLanguage = document.createElement('span');
+    const movieReleaseDateContainer = document.createElement('strong');
+    const movieReleaseDate = document.createElement('span');
+    const movieScoreContainer = document.createElement('strong');
+    const movieScore = document.createElement('span');
     
     generalSection.classList.add('more_info-section')
     selectedMovieLeftSection.classList.add('movie_left_section');
     selectedMovieRightSection.classList.add('movie_right_section');
     moviePoster.classList.add('card');
     moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+    movieTagline.innerText = movie.tagline;
+    movieCategoriesTitle.innerText = 'Categories';
+    movieTitle.innerText = movie.title;
+    movieOverview.innerText = movie.overview;
+    movieOriginalTitleContainer.innerText = 'Original Title:';
+    movieOriginalTitle. innerText = movie.original_title;
+    movieLanguageContainer.innerText = 'Original Language:'
+    movieLanguage.innerText = movie.spoken_languages[0].name;
+    movieReleaseDateContainer.innerText = 'Release Date:';
+    movieReleaseDate.innerText = movie.release_date;
+    movieScoreContainer.innerText = 'Score:';
+    movieScore.innerText = `${movie.vote_average} / 10`;
 
     generalSection.append(backHomeBtn, movieGeneralContainer, relatedMoviesSection);
     movieGeneralContainer.append(selectedMovieLeftSection, selectedMovieRightSection);
-    selectedMovieLeftSection.append(moviePoster, movieCategories);
+    selectedMovieLeftSection.append(moviePoster, movieTagline);
     movieCategories.appendChild(movieCategoriesTitle);
-    movieCategoriesTitle.appendChild(movieCategoriesTitleText);
-
+    selectedMovieRightSection.append(
+        movieTitle,
+        movieOverview,
+        movieCategories,
+        movieOriginalTitleContainer,
+        movieLanguageContainer,
+        movieReleaseDateContainer,
+        movieScoreContainer);
+    movieOriginalTitleContainer.appendChild(movieOriginalTitle);
+    movieLanguageContainer.appendChild(movieLanguage);
+    movieReleaseDateContainer.appendChild(movieReleaseDate);
+    movieScoreContainer.appendChild(movieScore);
     backHomeBtn.append(backHomeIcon, backHomeBtnText);
 
     movie.genres.forEach(genre => {
