@@ -289,29 +289,62 @@ async function getSerieInformation(serieId){
     const selectedSerieRightSection = document.createElement('div');
     const relatedSeriesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
-    const movieCategories = document.createElement('ul');
-    const movieCategoriesTitle = document.createElement('strong');
-    const movieCategoriesTitleText = document.createTextNode('Categories')
+    const movieTagline = document.createElement('strong');
+    const serieCategories = document.createElement('ul');
+    const serieCategoriesTitle = document.createElement('strong');
+    const serieTitle = document.createElement('h2');
+    const serieOverview = document.createElement('p');
+    const serieOriginalTitleContainer = document.createElement('strong');
+    const serieOriginalTitle = document.createElement('span');
+    const serieLanguageContainer = document.createElement('strong');
+    const serieLanguage = document.createElement('span');
+    const serieReleaseDateContainer = document.createElement('strong');
+    const serieReleaseDate = document.createElement('span');
+    const serieScoreContainer = document.createElement('strong');
+    const serieScore = document.createElement('span');
     
     generalSection.classList.add('more_info-section')
     selectedSerieLeftSection.classList.add('movie_left_section');
     selectedSerieRightSection.classList.add('movie_right_section');
     moviePoster.classList.add('card');
     moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/w300/${serie.poster_path}`);
+    movieTagline.innerText = serie.tagline;
+    serieCategoriesTitle.innerText = 'Categories';
+    serieTitle.innerText = serie.name;
+    serieOverview.innerText = serie.overview;
+    serieOriginalTitleContainer.innerText = 'Original Title:';
+    serieOriginalTitle. innerText = serie.original_name;
+    serieLanguageContainer.innerText = 'Original Language:'
+    serieLanguage.innerText = serie.spoken_languages[0].name;
+    serieReleaseDateContainer.innerText = 'Release Date:';
+    serieReleaseDate.innerText = serie.first_air_date;
+    serieScoreContainer.innerText = 'Score:';
+    serieScore.innerText = `${serie.vote_average} / 10`;
+
 
     generalSection.append(backHomeBtn, movieGeneralContainer, relatedSeriesSection);
     movieGeneralContainer.append(selectedSerieLeftSection, selectedSerieRightSection);
-    selectedSerieLeftSection.append(moviePoster, movieCategories);
-    movieCategories.appendChild(movieCategoriesTitle);
-    movieCategoriesTitle.appendChild(movieCategoriesTitleText);
-
+    selectedSerieLeftSection.append(moviePoster, );
+    serieCategories.appendChild(serieCategoriesTitle);
+    selectedSerieRightSection.append(
+        serieTitle,
+        serieOverview,
+        serieCategories,
+        serieOriginalTitleContainer,
+        serieLanguageContainer,
+        serieReleaseDateContainer,
+        serieScoreContainer);
+    serieOriginalTitleContainer.appendChild(serieOriginalTitle);
+    serieLanguageContainer.appendChild(serieLanguage);
+    serieReleaseDateContainer.appendChild(serieReleaseDate);
+    serieScoreContainer.appendChild(serieScore);
     backHomeBtn.append(backHomeIcon, backHomeBtnText);
 
     serie.genres.forEach(genre => {
         const categoriesElement = document.createElement('li');
         const genreTitle = document.createTextNode(genre.name);
         categoriesElement.appendChild(genreTitle);
-        movieCategories.append(categoriesElement);
+        serieCategories.append(categoriesElement);
     })
 };
 
