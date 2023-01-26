@@ -37,6 +37,7 @@ const nextBtn = document.createElement('button');
 const nextBtnIcon = document.createElement('i');
 
 const movieGeneralContainer = document.createElement('div');
+const recommendationsSection = document.createElement('section')
 
 
 generalSection.classList.add('general_section');

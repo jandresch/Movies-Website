@@ -40,7 +40,8 @@ async function getTrendingMovies(){
     const moviesPreview = movies.slice(0, 9);
     moviesPreview.forEach(movie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
-        const bgPoster = 'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path;
+        // const bgPoster = 'https://image.tmdb.org/t/p/w780/' + movie.poster_path;
+        const bgPoster = 'https://image.tmdb.org/t/p/w780/' + movie.backdrop_path;
         const movieContainer = document.createElement('li');
         const movieTitleContainer = document.createElement('figcaption');
         const movieTitle = document.createTextNode(movie.title);
@@ -63,7 +64,7 @@ async function getTrendingMovies(){
         movieContainer.addEventListener('mouseover', () => {
             movieTitleContainer.classList.add('card-hover');
             moreInfoBtn.classList.remove('inactive');
-            mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`)
+            mainMoviesBg.setAttribute('style',  `background-image: url('${bgPoster}');`);
         });
         movieContainer.addEventListener('mouseout', () => {
             movieTitleContainer.classList.remove('card-hover');
@@ -166,7 +167,7 @@ async function getPopularSeriesList(numPage){
     const response = await fetch(`${mainUrl}/tv/popular?api_key=${API_KEY}&page=${numPage}`);
     const data = await response.json();
     const series = data.results;
-    popularSeriesContainer.innerHTML ='';
+    popularSeriesContainer.innerHTML = '';
 
     series.forEach(serie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + serie.poster_path;
@@ -182,7 +183,7 @@ async function getPopularSeriesList(numPage){
         serieTitleContainer.classList.add('card-name');
         moreInfoBtn.classList.add('inactive');
 
-        if(location.hash.startsWith('#series')){
+        if(location.hash.startsWith('#tv')){
             generalSectionContentContainer.appendChild(serieContainer)
         }else{
             popularSeriesContainer.appendChild(serieContainer);
@@ -202,9 +203,9 @@ async function getPopularSeriesList(numPage){
             moreInfoBtn.classList.add('inactive'); 
         });
         moreInfoBtn.addEventListener('click',() => {
-            location.hash = `more-info=serie/${serie.name}/${serie.id}`;
+            location.hash = `more-info=tv/${serie.name}/${serie.id}`;
         });
-    })
+    });
 }
 
 async function getMovieInformation(movieId){
@@ -216,7 +217,6 @@ async function getMovieInformation(movieId){
     
     const selectedMovieLeftSection = document.createElement('div');
     const selectedMovieRightSection = document.createElement('div');
-    const relatedMoviesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
     const movieTagline = document.createElement('strong');
     const movieCategories = document.createElement('ul');
@@ -231,7 +231,8 @@ async function getMovieInformation(movieId){
     const movieReleaseDate = document.createElement('span');
     const movieScoreContainer = document.createElement('strong');
     const movieScore = document.createElement('span');
-    
+
+    generalSection.setAttribute('style', `background: linear-gradient(180deg, var(--opacity-blue), var(--dark-blue)), no-repeat center / cover url(https://image.tmdb.org/t/p/w780//${movie.backdrop_path})`);
     generalSection.classList.add('more_info-section')
     selectedMovieLeftSection.classList.add('movie_left_section');
     selectedMovieRightSection.classList.add('movie_right_section');
@@ -250,7 +251,7 @@ async function getMovieInformation(movieId){
     movieScoreContainer.innerText = 'Score:';
     movieScore.innerText = `${movie.vote_average} / 10`;
 
-    generalSection.append(backHomeBtn, movieGeneralContainer, relatedMoviesSection);
+    generalSection.append(backHomeBtn, movieGeneralContainer);
     movieGeneralContainer.append(selectedMovieLeftSection, selectedMovieRightSection);
     selectedMovieLeftSection.append(moviePoster, movieTagline);
     movieCategories.appendChild(movieCategoriesTitle);
@@ -287,7 +288,6 @@ async function getSerieInformation(serieId){
     
     const selectedSerieLeftSection = document.createElement('div');
     const selectedSerieRightSection = document.createElement('div');
-    const relatedSeriesSection = document.createElement('div');
     const moviePoster = document.createElement('img');
     const serieTagline = document.createElement('strong');
     const serieCategories = document.createElement('ul');
@@ -322,7 +322,7 @@ async function getSerieInformation(serieId){
     serieScore.innerText = `${serie.vote_average} / 10`;
 
 
-    generalSection.append(backHomeBtn, movieGeneralContainer, relatedSeriesSection);
+    generalSection.append(backHomeBtn, movieGeneralContainer);
     movieGeneralContainer.append(selectedSerieLeftSection, selectedSerieRightSection);
     selectedSerieLeftSection.append(moviePoster, serieTagline);
     serieCategories.appendChild(serieCategoriesTitle);
@@ -346,7 +346,57 @@ async function getSerieInformation(serieId){
         categoriesElement.appendChild(genreTitle);
         serieCategories.append(categoriesElement);
     })
+    getRelatedContent('tv', serie.id)
 };
+
+async function getRelatedContent(content, id){
+    const response = await fetch(`${mainUrl}/${content}/${id}/recommendations?api_key=${API_KEY}`);
+    const data = await response.json();
+    const contents = data.results.slice(0,10);
+
+    main.append(recommendationsSection);
+    console.log(contents);
+    generateContent(content, recommendationsSection, contents);
+};
+
+function generateContent(section, sectionContainer, contents){
+    contents.forEach(content => {
+        const poster = 'https://image.tmdb.org/t/p/w300/' + content.poster_path;
+        const contentContainer = document.createElement('li');
+        const contentTitleContainer = document.createElement('figcaption');
+        const contentTitle = document.createTextNode(content.name);
+        const moreInfoBtn = document.createElement('button');
+        const btnInfoText = document.createTextNode('more info');
+
+        contentContainer.classList.add('card');
+        contentContainer.setAttribute('id', content.id);
+        contentContainer.setAttribute('style', `background-image: url('${poster}');`);
+        contentTitleContainer.classList.add('card-name');
+        moreInfoBtn.classList.add('inactive');
+
+        // if(location.hash.startsWith('#series')){
+        //     generalSectionContentContainer.appendChild(serieContainer)
+        // }else{
+        //     popularSeriesContainer.appendChild(serieContainer);
+        // }
+        sectionContainer.appendChild(contentContainer)
+        contentContainer.appendChild(contentTitleContainer);
+        contentTitleContainer.append(contentTitle, moreInfoBtn);
+        moreInfoBtn.appendChild(btnInfoText);
+
+        contentContainer.addEventListener('mouseover', () => {
+            contentTitleContainer.classList.add('card-hover');
+            moreInfoBtn.classList.remove('inactive');
+        });
+        contentContainer.addEventListener('mouseout', () => {
+            contentTitleContainer.classList.remove('card-hover');
+            moreInfoBtn.classList.add('inactive'); 
+        });
+        moreInfoBtn.addEventListener('click',() => {
+            location.hash = `more-info=${section}/${content.name}/${content.id}`;
+        });
+    })
+}
 
 getMoviesCategoriesList();
 getSeriesCategoriesList();

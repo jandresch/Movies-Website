@@ -11,7 +11,7 @@ function navigate(){
     }else if(location.hash.startsWith('#movies')){
         console.log('Estas en las peliculas');
         moviesSection();
-    }else if(location.hash.startsWith('#series')){
+    }else if(location.hash.startsWith('#tv')){
         console.log('Estas en las series');
         seriesSection();
     }else if(location.hash.startsWith('#category')){
@@ -65,7 +65,7 @@ function homeLocation(){
     getPopularSeriesList(1);
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
-    moreSeriesBtn.onclick = () => {location.hash = 'series'};
+    moreSeriesBtn.onclick = () => {location.hash = 'tv'};
     trendingArrowLeftContainer.onclick = () => {
         scrollTrendingList.scroll(scrollTrendingList.scrollLeft - 320, 0);
     };
@@ -81,6 +81,7 @@ function trendingSection(){
     generalHeaderTextContainer.innerHTML = '';
     generalSectionContentContainer.innerHTML = '';
     generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
     
     main.appendChild(generalSection);
     generalSection.append(generalHeaderContainer, generalSectionContentContainer);
@@ -106,6 +107,8 @@ function moviesSection(){
 
     generalHeaderTextContainer.innerHTML = '';
     generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
     pageNum.innerHTML = '';
 
     main.appendChild(generalSection);
@@ -150,6 +153,8 @@ function seriesSection(){
 
     generalHeaderTextContainer.innerHTML = '';
     generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
     pageNum.innerHTML = '';
 
     main.appendChild(generalSection);
@@ -168,7 +173,7 @@ function seriesSection(){
     generalSeriesSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
-    getPopularSeriesList(numberOfCurrentPage)
+    getPopularSeriesList(numberOfCurrentPage);
     backHomeBtn.onclick = () => {location.hash = 'home'};
 
         previousBtn.onclick = () => {
@@ -189,21 +194,24 @@ function seriesSection(){
 
 function moreInfoSection(){
     const [category, _, elementId] = location.hash.split("/");
-    console.log(category);
-    console.log(elementId);
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
+    pageNum.innerHTML = '';
 
     main.appendChild(generalSection);
-
 
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
-
+    backHomeBtn.classList.add('back_home-btn')
 
     if(category.endsWith('movie')){
         getMovieInformation(elementId);
-    }else if(category.endsWith('serie')){
+    }else if(category.endsWith('tv')){
         getSerieInformation(elementId);
         console.log('moda foca')
     }
