@@ -90,6 +90,7 @@ async function getAllTrendingMovies(){
         const moreInfoBtn = document.createElement('button');
         const btnInfoText = document.createTextNode('more info');
 
+        generalSection.setAttribute('style', `background: `);
         movieContainer.classList.add('card');
         movieContainer.setAttribute('id', movie.id);
         movieContainer.setAttribute('style', `background-image: url('${poster}');`);
@@ -123,6 +124,7 @@ async function getPopularMoviesList(numPage){
     const movies = data.results;
 
     popularMoviesContainer.innerHTML ='';
+    generalSection.setAttribute('style', `background: `);
 
     movies.forEach(movie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
@@ -131,6 +133,7 @@ async function getPopularMoviesList(numPage){
         const movieTitle = document.createTextNode(movie.title);
         const moreInfoBtn = document.createElement('button');
         const btnInfoText = document.createTextNode('more info');
+
 
         movieContainer.classList.add('card');
         movieContainer.setAttribute('id', movie.id);
@@ -167,7 +170,9 @@ async function getPopularSeriesList(numPage){
     const response = await fetch(`${mainUrl}/tv/popular?api_key=${API_KEY}&page=${numPage}`);
     const data = await response.json();
     const series = data.results;
+
     popularSeriesContainer.innerHTML = '';
+    generalSection.setAttribute('style', `background: `);
 
     series.forEach(serie => {
         const poster = 'https://image.tmdb.org/t/p/w300/' + serie.poster_path;
@@ -274,11 +279,12 @@ async function getMovieInformation(movieId){
         const genreTitle = document.createTextNode(genre.name);
         categoriesElement.appendChild(genreTitle);
         movieCategories.append(categoriesElement);
-    })
+    });
+
+    getRelatedContent('movie', movie.id);
 
 };
 
-// editar la seccion con todos sus componenetes 
 async function getSerieInformation(serieId){
     const response = await fetch(`${mainUrl}/tv/${serieId}?api_key=${API_KEY}`);
     const serie = await response.json();
@@ -303,6 +309,7 @@ async function getSerieInformation(serieId){
     const serieScoreContainer = document.createElement('strong');
     const serieScore = document.createElement('span');
     
+    generalSection.setAttribute('style', `background: linear-gradient(180deg, var(--opacity-blue), var(--dark-blue)), no-repeat center / cover url(https://image.tmdb.org/t/p/w780//${serie.backdrop_path})`);
     generalSection.classList.add('more_info-section')
     selectedSerieLeftSection.classList.add('movie_left_section');
     selectedSerieRightSection.classList.add('movie_right_section');
@@ -346,7 +353,7 @@ async function getSerieInformation(serieId){
         categoriesElement.appendChild(genreTitle);
         serieCategories.append(categoriesElement);
     })
-    getRelatedContent('tv', serie.id)
+    getRelatedContent('tv', serie.id);
 };
 
 async function getRelatedContent(content, id){
@@ -354,10 +361,10 @@ async function getRelatedContent(content, id){
     const data = await response.json();
     const contents = data.results.slice(0,10);
 
+    console.log(contents);
     recommendationsList.innerHTML = '';
 
     main.append(recommendationsSection);
-    console.log(contents);
     generateContent(content, recommendationsList, contents);
 };
 
@@ -366,7 +373,7 @@ function generateContent(section, sectionContainer, contents){
         const poster = 'https://image.tmdb.org/t/p/w300/' + content.poster_path;
         const contentContainer = document.createElement('li');
         const contentTitleContainer = document.createElement('figcaption');
-        const contentTitle = document.createTextNode(content.name);
+        const contentTitle = document.createTextNode(content.name || content.title);
         const moreInfoBtn = document.createElement('button');
         const btnInfoText = document.createTextNode('more info');
 

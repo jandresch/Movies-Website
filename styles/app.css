@@ -402,12 +402,16 @@ main{
 /* recommendations section */
 
 .recommendations-section{
-    width: 100%;
+    width: 88%;
     height: auto;
     padding: 20px 12px 48px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+.recommendations-section hr{
+    width: 100%;
+    margin: 8px 0px 12px;
 }
 .recommendations_list-container{
     width: auto;

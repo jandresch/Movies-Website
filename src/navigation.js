@@ -231,6 +231,7 @@ function moreInfoSection(){
         console.log('moda foca')
     }
     backHomeBtn.onclick = () => {location.hash = 'home'};
+    
     recommendationsLeftArrowContainer.onclick = () => {
         recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - 320, 0);
     };
