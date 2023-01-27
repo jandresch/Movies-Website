@@ -275,11 +275,16 @@ main{
     background-color: var(--opacity-dark-blue);
     transition: 500ms ease-in-out;
 }
-.movies_list .card-hover{
+.card-hover{
     height: 100%;
     border-radius: 8px;
     transition: 500ms;
 }
+/* .movies_list .card-hover{
+    height: 100%;
+    border-radius: 8px;
+    transition: 500ms;
+} */
 /* General Home Section */
 .general_section{
     /* width: 88vw;
@@ -318,11 +323,11 @@ main{
     width: 180px;
     height: 240px;
 }
-.general_section-container .card-hover{
+/* .general_section-container .card-hover{
     height: 100%;
     border-radius: 8px;
     transition: 500ms;
-}
+} */
 .general_section-container .card-name{
     font-size: 1.2rem;
     line-height: 1.6rem;
@@ -394,8 +399,30 @@ main{
 .movie_right_section ul{
     margin: 12px 0px
 }
+/* recommendations section */
 
-
+.recommendations-section{
+    width: 100%;
+    height: auto;
+    padding: 20px 12px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.recommendations_list-container{
+    width: auto;
+    height: fit-content;
+    margin: 8px 0px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: visible;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+.recommendations_list-container span:nth-last-of-type(1){
+    right: 0px;
+}
 /* footer */
 .footer_section{
     width: 100%;

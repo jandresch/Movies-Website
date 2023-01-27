@@ -36,9 +36,33 @@ const pageNum = document.createElement('strong');
 const nextBtn = document.createElement('button');
 const nextBtnIcon = document.createElement('i');
 
-const movieGeneralContainer = document.createElement('div');
-const recommendationsSection = document.createElement('section')
+{/* <section id="trendingMoviesSection" class="main_movies_section">
+            <div class="main_movies-container">
+                <div class="trending-header">
+                    <h2>Trending Movies <hr></h2>
+                    <button id="trendsBtn" class="trends-button">more trends <i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="main_movies_list-container">
+                    <span id="trendingArrowLeftContainer" class="arrow_container"><i class="fa-solid fa-chevron-left"></i></span>
+                    <ul id="moviesList" class="movies_list">
+                        <!-- <li class="movie-card"><figcaption class="movie_card-name movie_card-hover">HOla <button class="inactive">more info</button></figcaption></li> -->
+                    </ul>
+                    <span id="trendingArrowRightContainer" class="arrow_container"><i class="fa-solid fa-chevron-right"></i></span>
+                </div>
+            </div>
+</section> */}
 
+const movieGeneralContainer = document.createElement('div');
+const recommendationsSection = document.createElement('section');
+const recommendationsTitleContainer = document.createElement('div');
+const recommendationsTitle = document.createElement('h3');
+const recommendationsSectionLine = document.createElement('hr');
+const recommendationsListContainer = document.createElement('div');
+const recommendationsLeftArrowContainer = document.createElement('span');
+const recommendationsLeftArrowIcon = document.createElement('i');
+const recommendationsList = document.createElement('ul');
+const recommendationsRightArrowContainer = document.createElement('span');
+const recommendationsRightArrowIcon = document.createElement('i');
 
 generalSection.classList.add('general_section');
 generalSection.classList.add('inactive');
@@ -49,7 +73,18 @@ generalSectionPageBtns.classList.add('btnsSection');
 previousBtnIcon.classList.add('fa-solid', 'fa-chevron-left');
 nextBtnIcon.classList.add('fa-solid', 'fa-chevron-right');
 
-movieGeneralContainer.classList.add('movie_general-container')
+movieGeneralContainer.classList.add('movie_general-container');
+
+recommendationsSection.classList.add('recommendations-section');
+recommendationsTitleContainer.classList.add('recommendations-header');
+recommendationsListContainer.classList.add('recommendations_list-container');
+recommendationsLeftArrowContainer.classList.add('arrow_container');
+recommendationsLeftArrowIcon.classList.add('fa-solid', 'fa-chevron-left');
+recommendationsList.classList.add('movies_list');
+recommendationsRightArrowContainer.classList.add('arrow_container');
+recommendationsRightArrowIcon.classList.add('fa-solid', 'fa-chevron-right');
+
+
 
 
 backHomeBtn.setAttribute('id', 'backHomeBtn');

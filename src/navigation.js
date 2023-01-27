@@ -56,10 +56,12 @@ function showNavbarCategoriesList(){
 function homeLocation(){
     console.log('Estas en el home');
     numberOfCurrentPage = 1;
+
     trendingMoviesSection.classList.remove('inactive');
     generalMoviesSection.classList.remove('inactive');
     generalSeriesSection.classList.remove('inactive');
-    generalSection.classList.add('inactive')
+    recommendationsSection.classList.add('inactive');
+    generalSection.classList.add('inactive');
 
     getPopularMoviesList(1);
     getPopularSeriesList(1);
@@ -93,6 +95,7 @@ function trendingSection(){
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
     getAllTrendingMovies()
@@ -125,6 +128,7 @@ function moviesSection(){
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
     getPopularMoviesList(numberOfCurrentPage);
@@ -171,6 +175,7 @@ function seriesSection(){
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
     generalSection.classList.remove('inactive');
 
     getPopularSeriesList(numberOfCurrentPage);
@@ -199,15 +204,25 @@ function moreInfoSection(){
     generalSectionContentContainer.innerHTML = '';
     generalSectionPageBtns.innerHTML = '';
     movieGeneralContainer.innerHTML = '';
+    recommendationsSection.innerHTML = ''
     pageNum.innerHTML = '';
 
-    main.appendChild(generalSection);
+    recommendationsTitle.innerText = 'Recommendations';
 
     trendingMoviesSection.classList.add('inactive');
     generalMoviesSection.classList.add('inactive');
     generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.remove('inactive');
     generalSection.classList.remove('inactive');
     backHomeBtn.classList.add('back_home-btn')
+
+    main.appendChild(generalSection, recommendationsSection);
+    recommendationsSection.append(recommendationsTitleContainer, recommendationsSectionLine, recommendationsListContainer)
+    recommendationsTitleContainer.appendChild(recommendationsTitle);
+    recommendationsListContainer.append(recommendationsLeftArrowContainer, recommendationsList, recommendationsRightArrowContainer);
+    recommendationsLeftArrowContainer.appendChild(recommendationsLeftArrowIcon);
+    recommendationsRightArrowContainer.appendChild(recommendationsRightArrowIcon);    
+
 
     if(category.endsWith('movie')){
         getMovieInformation(elementId);
@@ -216,6 +231,12 @@ function moreInfoSection(){
         console.log('moda foca')
     }
     backHomeBtn.onclick = () => {location.hash = 'home'};
+    recommendationsLeftArrowContainer.onclick = () => {
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - 320, 0);
+    };
+    recommendationsRightArrowContainer.onclick = () => {
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft + 320, 0);
+    };
 }
 
 function categoriesSection(){

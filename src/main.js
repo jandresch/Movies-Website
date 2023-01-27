@@ -354,9 +354,11 @@ async function getRelatedContent(content, id){
     const data = await response.json();
     const contents = data.results.slice(0,10);
 
+    recommendationsList.innerHTML = '';
+
     main.append(recommendationsSection);
     console.log(contents);
-    generateContent(content, recommendationsSection, contents);
+    generateContent(content, recommendationsList, contents);
 };
 
 function generateContent(section, sectionContainer, contents){
