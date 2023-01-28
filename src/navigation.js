@@ -63,22 +63,23 @@ function homeLocation(){
     recommendationsSection.classList.add('inactive');
     generalSection.classList.add('inactive');
 
+    let random;
+
     getPopularMoviesList(1);
     getPopularSeriesList(1);
     moreTrendsBtn.onclick = () => {location.hash = 'trending'};
     moreMoviesBtn.onclick = () => {location.hash = 'movies'};
     moreSeriesBtn.onclick = () => {location.hash = 'tv'};
-    trendingArrowLeftContainer.onclick = () => {
-        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - 320, 0);
+    trendingArrowLeftContainer.onmouseover = () => {
+        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
     };
-    trendingArrowRightContainer.onclick = () => {
-        scrollTrendingList.scroll(scrollTrendingList.scrollLeft + 320, 0);
+    trendingArrowRightContainer.onmouseover = () => {
+            scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
     };
 }
 
 function trendingSection(){
     const generalHeaderTitle = document.createTextNode('Trending Movies');
-
 
     generalHeaderTextContainer.innerHTML = '';
     generalSectionContentContainer.innerHTML = '';
@@ -231,7 +232,7 @@ function moreInfoSection(){
         console.log('moda foca')
     }
     backHomeBtn.onclick = () => {location.hash = 'home'};
-    
+
     recommendationsLeftArrowContainer.onclick = () => {
         recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - 320, 0);
     };
