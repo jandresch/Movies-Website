@@ -13,6 +13,10 @@ async function getMoviesCategoriesList(){
 
         categoryContainer.appendChild(categoryTitle);
         moviesCategoriesList.appendChild(categoryContainer);
+        
+        categoryContainer.addEventListener('click',() => {
+            location.hash = `category/movie/${category.name}/${category.id}`;
+        });
     })
 }
 
@@ -29,8 +33,22 @@ async function getSeriesCategoriesList(){
 
         categoryContainer.appendChild(categoryTitle);
         seriesCategoriesList.appendChild(categoryContainer);
+
+        categoryContainer.addEventListener('click',() => {
+            location.hash = `category/tv/${category.name}/${category.id}`;
+        });
     })
 }
+
+async function getContentByCategory(section, categoryId, numPage){
+    const response = await fetch(`${mainUrl}/discover/${section}?api_key=${API_KEY}&with_genres=${categoryId}&page=${numPage}`);
+    const data = await response.json();
+    const content = data.results;
+
+    generalSection.setAttribute('style', `background: `);
+
+    generateContent(section, generalSectionContentContainer,content);
+};
 
 async function getTrendingMovies(){
     const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
@@ -240,7 +258,7 @@ async function getSerieInformation(serieId){
 async function getRelatedContent(content, id){
     const response = await fetch(`${mainUrl}/${content}/${id}/recommendations?api_key=${API_KEY}`);
     const data = await response.json();
-    const contents = data.results.slice(0,10);
+    const contents = data.results.slice(0,8);
 
     console.log(contents);
     recommendationsList.innerHTML = '';

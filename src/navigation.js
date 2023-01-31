@@ -5,18 +5,14 @@ let numberOfCurrentPage = 1;
 function navigate(){
     if(location.hash.startsWith('#home')){
         homeLocation();
+    }else if(location.hash.startsWith('#category')){
+        categoriesSection();
     }else if(location.hash.startsWith('#trending')){
-        console.log('Estas los trends');
         trendingSection();
     }else if(location.hash.startsWith('#movies')){
-        console.log('Estas en las peliculas');
         moviesSection();
     }else if(location.hash.startsWith('#tv')){
-        console.log('Estas en las series');
         seriesSection();
-    }else if(location.hash.startsWith('#category')){
-        console.log('Estas en las categorias');
-        categoriesSection();
     }else if(location.hash.startsWith('#more-info')){
         console.log('Estas en more-info');
         moreInfoSection();
@@ -73,9 +69,15 @@ function homeLocation(){
     trendingArrowLeftContainer.onmouseover = () => {
         scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
     };
+    trendingArrowLeftContainer.onclick = () => {
+        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
+    };
     trendingArrowRightContainer.onmouseover = () => {
             scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
     };
+    trendingArrowRightContainer.onclick = () => {
+        scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
+};
 }
 
 function trendingSection(){
@@ -138,15 +140,13 @@ function moviesSection(){
         previousBtn.onclick = () => {
             if(numberOfCurrentPage > 1){
                 numberOfCurrentPage--; 
-                console.log(numberOfCurrentPage); 
                 moviesSection()
             }
         }
             
         nextBtn.onclick = () => {
             if(numberOfCurrentPage < 6){
-                numberOfCurrentPage++; 
-                console.log(numberOfCurrentPage); 
+                numberOfCurrentPage++;  
                 moviesSection()}
         }
     
@@ -234,14 +234,64 @@ function moreInfoSection(){
     backHomeBtn.onclick = () => {location.hash = 'home'};
 
     recommendationsLeftArrowContainer.onclick = () => {
-        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - 320, 0);
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - window.innerWidth, 0);
+    };
+    recommendationsLeftArrowContainer.onmouseover = () => {
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft - window.innerWidth, 0);
     };
     recommendationsRightArrowContainer.onclick = () => {
-        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft + 320, 0);
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft + window.innerWidth, 0);
+    };
+    recommendationsRightArrowContainer.onmouseover = () => {
+        recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft + window.innerWidth, 0);
     };
 }
 
 function categoriesSection(){
+    const [_ ,category, categoryName, categoryId] = location.hash.split("/");
+    const generalHeaderTitle = document.createTextNode(categoryName);
+    const pageNumber = document.createTextNode(numberOfCurrentPage);
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
+    pageNum.innerHTML = '';
+
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSectionPageBtns.append(previousBtn, pageNum, nextBtn);
+    previousBtn.appendChild(previousBtnIcon);
+    pageNum.appendChild(pageNumber);
+    nextBtn.appendChild(nextBtnIcon);
+    generalSection.setAttribute('id', 'moviesSection');
+
+    trendingMoviesSection.classList.add('inactive');
+    generalMoviesSection.classList.add('inactive');
+    generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
+
+    getContentByCategory(category, categoryId, numberOfCurrentPage);
+    backHomeBtn.onclick = () => {location.hash = 'home'};
+
+        previousBtn.onclick = () => {
+            if(numberOfCurrentPage > 1){
+                numberOfCurrentPage--; 
+                categoriesSection();
+            }
+        }
+            
+        nextBtn.onclick = () => {
+            if(numberOfCurrentPage < 6){
+                numberOfCurrentPage++; 
+                categoriesSection();
+            }
+        }
+
 
 };
 
