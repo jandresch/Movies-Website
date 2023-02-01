@@ -45,9 +45,30 @@ async function getContentByCategory(section, categoryId, numPage){
     const data = await response.json();
     const content = data.results;
 
+
     generalSection.setAttribute('style', `background: `);
 
     generateContent(section, generalSectionContentContainer,content);
+};
+
+async function getMoviesBySearch(query){
+    const response = await fetch(`${mainUrl}/search/movie?api_key=${API_KEY}&query=${query}`);
+    const data = await response.json();
+    const content = data.results.slice(0, 9);
+
+    generalSection.setAttribute('style', `background: `);
+
+    generateContent('movie', generalSectionContentContainer,content);
+};
+
+async function getSeriesBySearch(query){
+    const response = await fetch(`${mainUrl}/search/tv?api_key=${API_KEY}&query=${query}`);
+    const data = await response.json();
+    const content = data.results.slice(0, 9);
+
+    generalSection.setAttribute('style', `background: `);
+
+    generateContent('tv', generalSectionContentContainer,content);
 };
 
 async function getTrendingMovies(){

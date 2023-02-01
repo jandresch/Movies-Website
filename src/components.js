@@ -1,5 +1,6 @@
 // Components from HTML document
 const main = document.querySelector('main');
+const headerTitle = document.getElementById('navTitle');
 const moviesCategoriesBtn = document.querySelector('#navTexts .nav_categories-movies');
 const moviesCategoriesList = document.querySelector('.nav_categories-movies .movies');
 const seriesCategoriesBtn = document.querySelector('#navTexts .nav_categories-series');
@@ -35,22 +36,6 @@ const previousBtnIcon = document.createElement('i');
 const pageNum = document.createElement('strong');
 const nextBtn = document.createElement('button');
 const nextBtnIcon = document.createElement('i');
-
-{/* <section id="trendingMoviesSection" class="main_movies_section">
-            <div class="main_movies-container">
-                <div class="trending-header">
-                    <h2>Trending Movies <hr></h2>
-                    <button id="trendsBtn" class="trends-button">more trends <i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="main_movies_list-container">
-                    <span id="trendingArrowLeftContainer" class="arrow_container"><i class="fa-solid fa-chevron-left"></i></span>
-                    <ul id="moviesList" class="movies_list">
-                        <!-- <li class="movie-card"><figcaption class="movie_card-name movie_card-hover">HOla <button class="inactive">more info</button></figcaption></li> -->
-                    </ul>
-                    <span id="trendingArrowRightContainer" class="arrow_container"><i class="fa-solid fa-chevron-right"></i></span>
-                </div>
-            </div>
-</section> */}
 
 const movieGeneralContainer = document.createElement('div');
 const recommendationsSection = document.createElement('section');

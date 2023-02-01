@@ -7,6 +7,8 @@ function navigate(){
         homeLocation();
     }else if(location.hash.startsWith('#category')){
         categoriesSection();
+    }else if(location.hash.startsWith('#search')){
+        searchSection();
     }else if(location.hash.startsWith('#trending')){
         trendingSection();
     }else if(location.hash.startsWith('#movies')){
@@ -19,11 +21,18 @@ function navigate(){
     }else{
         console.log('Estas en el home');
         homeLocation();
-    }
+    };
 
+    headerTitle.onclick = () => {location.hash = `home`};
+    searchBarBtn.onclick = () => {location.hash = `search=${searchBar.value}`};
+    searchBar.onkeydown = (event) => {
+        if(event.keyCode == 13){
+            location.hash = `search=${searchBar.value}`;
+        }
+    };
+    
     showNavbarCategoriesList();
-    searchBarBtn.onclick = () => {alert(searchBar.value)}
-}
+};
 
 function showNavbarCategoriesList(){
     moviesCategoriesBtn.addEventListener('mouseover', () => {
@@ -79,6 +88,83 @@ function homeLocation(){
         scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
 };
 }
+
+function categoriesSection(){
+    const [_ ,category, categoryName, categoryId] = location.hash.split("/");
+    const generalHeaderTitle = document.createTextNode(categoryName.split('%20').join(' '));
+    const pageNumber = document.createTextNode(numberOfCurrentPage);
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
+    pageNum.innerHTML = '';
+
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSectionPageBtns.append(previousBtn, pageNum, nextBtn);
+    previousBtn.appendChild(previousBtnIcon);
+    pageNum.appendChild(pageNumber);
+    nextBtn.appendChild(nextBtnIcon);
+    generalSection.setAttribute('id', 'moviesSection');
+
+    trendingMoviesSection.classList.add('inactive');
+    generalMoviesSection.classList.add('inactive');
+    generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
+
+    getContentByCategory(category, categoryId, numberOfCurrentPage);
+    backHomeBtn.onclick = () => {location.hash = 'home'};
+
+        previousBtn.onclick = () => {
+            if(numberOfCurrentPage > 1){
+                numberOfCurrentPage--; 
+                categoriesSection();
+            }
+        }
+            
+        nextBtn.onclick = () => {
+            if(numberOfCurrentPage < 6){
+                numberOfCurrentPage++; 
+                categoriesSection();
+            }
+        }
+};
+
+function searchSection(){
+    const [_ ,query] = location.hash.split("=");
+    let searchQuery = query.split('%20').join(' ');
+    const generalHeaderTitle = document.createTextNode(searchQuery);
+
+
+    generalHeaderTextContainer.innerHTML = '';
+    generalSectionContentContainer.innerHTML = '';
+    generalSectionPageBtns.innerHTML = '';
+    movieGeneralContainer.innerHTML = '';
+
+    main.appendChild(generalSection);
+    generalSection.append(generalHeaderContainer, generalSectionContentContainer);
+    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
+    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
+    backHomeBtn.append(backHomeIcon, backHomeBtnText);
+    generalSection.setAttribute('id', 'moviesSection');
+
+    trendingMoviesSection.classList.add('inactive');
+    generalMoviesSection.classList.add('inactive');
+    generalSeriesSection.classList.add('inactive');
+    recommendationsSection.classList.add('inactive');
+    generalSection.classList.remove('inactive');
+
+    getMoviesBySearch(searchQuery);
+    getSeriesBySearch(searchQuery);
+
+    backHomeBtn.onclick = () => {location.hash = 'home'};
+
+};
 
 function trendingSection(){
     const generalHeaderTitle = document.createTextNode('Trending Movies');
@@ -247,53 +333,7 @@ function moreInfoSection(){
     };
 }
 
-function categoriesSection(){
-    const [_ ,category, categoryName, categoryId] = location.hash.split("/");
-    const generalHeaderTitle = document.createTextNode(categoryName);
-    const pageNumber = document.createTextNode(numberOfCurrentPage);
 
-    generalHeaderTextContainer.innerHTML = '';
-    generalSectionContentContainer.innerHTML = '';
-    generalSectionPageBtns.innerHTML = '';
-    movieGeneralContainer.innerHTML = '';
-    pageNum.innerHTML = '';
-
-    main.appendChild(generalSection);
-    generalSection.append(generalHeaderContainer, generalSectionContentContainer, generalSectionPageBtns);
-    generalHeaderContainer.append(generalHeaderTextContainer, backHomeBtn);
-    generalHeaderTextContainer.append(generalHeaderTitle, generalSectionLine);
-    backHomeBtn.append(backHomeIcon, backHomeBtnText);
-    generalSectionPageBtns.append(previousBtn, pageNum, nextBtn);
-    previousBtn.appendChild(previousBtnIcon);
-    pageNum.appendChild(pageNumber);
-    nextBtn.appendChild(nextBtnIcon);
-    generalSection.setAttribute('id', 'moviesSection');
-
-    trendingMoviesSection.classList.add('inactive');
-    generalMoviesSection.classList.add('inactive');
-    generalSeriesSection.classList.add('inactive');
-    recommendationsSection.classList.add('inactive');
-    generalSection.classList.remove('inactive');
-
-    getContentByCategory(category, categoryId, numberOfCurrentPage);
-    backHomeBtn.onclick = () => {location.hash = 'home'};
-
-        previousBtn.onclick = () => {
-            if(numberOfCurrentPage > 1){
-                numberOfCurrentPage--; 
-                categoriesSection();
-            }
-        }
-            
-        nextBtn.onclick = () => {
-            if(numberOfCurrentPage < 6){
-                numberOfCurrentPage++; 
-                categoriesSection();
-            }
-        }
-
-
-};
 
 
 // arrowBtn.addEventListener('click', () => {
