@@ -30,7 +30,7 @@ function navigate(){
             location.hash = `search=${searchBar.value}`;
         }
     };
-    
+
     showNavbarCategoriesList();
 };
 
@@ -332,10 +332,3 @@ function moreInfoSection(){
         recommendationsListContainer.scroll(recommendationsListContainer.scrollLeft + window.innerWidth, 0);
     };
 }
-
-
-
-
-// arrowBtn.addEventListener('click', () => {
-//     location.hash = window.history.back();
-//  });

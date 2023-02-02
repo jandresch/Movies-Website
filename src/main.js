@@ -1,7 +1,8 @@
 const mainUrl = 'https://api.themoviedb.org/3';
 
 async function getMoviesCategoriesList(){
-    const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY);
+    // const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY);
+    const response = await fetch(`${mainUrl}/genre/movie/list?api_key=${API_KEY}`);
     const data = await response.json();
     const categories = data.genres;
 
@@ -21,7 +22,8 @@ async function getMoviesCategoriesList(){
 }
 
 async function getSeriesCategoriesList(){
-    const response = await fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=' + API_KEY);
+    // const response = await fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=' + API_KEY);
+    const response = await fetch(`${mainUrl}/genre/tv/list?api_key=${API_KEY}`);
     const data = await response.json();
     const categories = data.genres;
 
@@ -72,7 +74,8 @@ async function getSeriesBySearch(query){
 };
 
 async function getTrendingMovies(){
-    const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
+    // const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
+    const response = await fetch(`${mainUrl}/trending/movie/day?api_key=${API_KEY}`);
     const data = await response.json();
     const movies = data.results;
     const moviesPreview = movies.slice(0, 9);
@@ -169,8 +172,8 @@ async function getMovieInformation(movieId){
     movieOverview.innerText = movie.overview;
     movieOriginalTitleContainer.innerText = 'Original Title:';
     movieOriginalTitle. innerText = movie.original_title;
-    movieLanguageContainer.innerText = 'Original Language:'
-    movieLanguage.innerText = movie.spoken_languages[0].name;
+    movieLanguageContainer.innerText = 'Original Language:';
+    movieLanguage.innerText = movie.original_language;
     movieReleaseDateContainer.innerText = 'Release Date:';
     movieReleaseDate.innerText = movie.release_date;
     movieScoreContainer.innerText = 'Score:';
@@ -281,7 +284,6 @@ async function getRelatedContent(content, id){
     const data = await response.json();
     const contents = data.results.slice(0,8);
 
-    console.log(contents);
     recommendationsList.innerHTML = '';
 
     main.append(recommendationsSection);
@@ -289,37 +291,50 @@ async function getRelatedContent(content, id){
 };
 
 function generateContent(section, sectionContainer, contents){
-    contents.forEach(content => {
-        const poster = 'https://image.tmdb.org/t/p/w300/' + content.poster_path;
-        const contentContainer = document.createElement('li');
-        const contentTitleContainer = document.createElement('figcaption');
-        const contentTitle = document.createTextNode(content.name || content.title);
-        const moreInfoBtn = document.createElement('button');
-        const btnInfoText = document.createTextNode('more info');
 
-        contentContainer.classList.add('card');
-        contentContainer.setAttribute('id', content.id);
-        contentContainer.setAttribute('style', `background-image: url('${poster}');`);
-        contentTitleContainer.classList.add('card-name');
-        moreInfoBtn.classList.add('inactive');
+    if(contents.length == 0){
+        const emptyContentMessage = document.createElement('strong');
+        emptyContentMessage.classList.add('empty-content');
+        sectionContainer.classList.add('empty_container')
 
-        sectionContainer.appendChild(contentContainer)
-        contentContainer.appendChild(contentTitleContainer);
-        contentTitleContainer.append(contentTitle, moreInfoBtn);
-        moreInfoBtn.appendChild(btnInfoText);
+        emptyContentMessage.innerText = 'Sorry, theres no available information at the moment.  :(';
 
-        contentContainer.addEventListener('mouseover', () => {
-            contentTitleContainer.classList.add('card-hover');
-            moreInfoBtn.classList.remove('inactive');
+        sectionContainer.append(emptyContentMessage);
+        
+    }else{
+        contents.forEach(content => {
+            const poster = 'https://image.tmdb.org/t/p/w300/' + content.poster_path;
+            const contentContainer = document.createElement('li');
+            const contentTitleContainer = document.createElement('figcaption');
+            const contentTitle = document.createTextNode(content.name || content.title);
+            const moreInfoBtn = document.createElement('button');
+            const btnInfoText = document.createTextNode('more info');
+
+            contentContainer.classList.add('card');
+            contentContainer.setAttribute('id', content.id);
+            contentContainer.setAttribute('style', `background-image: url('${poster}');`);
+            contentTitleContainer.classList.add('card-name');
+            moreInfoBtn.classList.add('inactive');
+            sectionContainer.classList.remove('empty_container');
+
+            sectionContainer.appendChild(contentContainer)
+            contentContainer.appendChild(contentTitleContainer);
+            contentTitleContainer.append(contentTitle, moreInfoBtn);
+            moreInfoBtn.appendChild(btnInfoText);
+
+            contentContainer.addEventListener('mouseover', () => {
+                contentTitleContainer.classList.add('card-hover');
+                moreInfoBtn.classList.remove('inactive');
+            });
+            contentContainer.addEventListener('mouseout', () => {
+                contentTitleContainer.classList.remove('card-hover');
+                moreInfoBtn.classList.add('inactive'); 
+            });
+            moreInfoBtn.addEventListener('click',() => {
+                location.hash = `more-info=${section}/${content.name}/${content.id}`;
+            });
         });
-        contentContainer.addEventListener('mouseout', () => {
-            contentTitleContainer.classList.remove('card-hover');
-            moreInfoBtn.classList.add('inactive'); 
-        });
-        moreInfoBtn.addEventListener('click',() => {
-            location.hash = `more-info=${section}/${content.name}/${content.id}`;
-        });
-    })
+    }
 }
 
 getMoviesCategoriesList();
