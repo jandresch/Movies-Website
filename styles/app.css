@@ -125,9 +125,10 @@ nav{
     height: auto;
     margin: 24px;
     padding: 12px;
-    position: absolute;
     border-radius: 8px;
     font-size: 1.6rem;
+    position: absolute;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 8px;
@@ -289,6 +290,7 @@ main{
     margin: 24px 0px; */
     width: 100%;
     height: auto;
+    min-height: 88vh;
     padding: 24px 6%;
 }
 .general_section-header{

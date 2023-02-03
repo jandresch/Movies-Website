@@ -3,6 +3,9 @@ window.addEventListener('hashchange', navigate);
 let numberOfCurrentPage = 1;
 
 function navigate(){
+
+    numberOfCurrentPage = 1;
+
     if(location.hash.startsWith('#home')){
         homeLocation();
     }else if(location.hash.startsWith('#category')){
@@ -22,71 +25,81 @@ function navigate(){
         console.log('Estas en el home');
         homeLocation();
     };
+    moviesCategoriesList.classList.add('inactive'); 
+    seriesCategoriesList.classList.add('inactive'); 
 
     headerTitle.onclick = () => {location.hash = `home`};
+
     searchBarBtn.onclick = () => {location.hash = `search=${searchBar.value}`};
     searchBar.onkeydown = (event) => {
         if(event.keyCode == 13){
             location.hash = `search=${searchBar.value}`;
         }
     };
+    searchBar.value = '';
 
     showNavbarCategoriesList();
+    window.scrollTo(0, 0);
 };
 
 function showNavbarCategoriesList(){
-    moviesCategoriesBtn.addEventListener('mouseover', () => {
+
+    function activateMoviesCategories(){
         moviesCategoriesList.classList.remove('inactive');
     
         if(!seriesCategoriesList.classList.contains('inactive')){
             seriesCategoriesList.classList.add('inactive');
         };
-    });
+    };
+    moviesCategoriesBtn.addEventListener('mouseover', activateMoviesCategories);
+    moviesCategoriesBtn.addEventListener('click', activateMoviesCategories);
+ 
     moviesCategoriesList.addEventListener('mouseout', () => {
         moviesCategoriesList.classList.add('inactive'); 
     });
     
-    seriesCategoriesBtn.addEventListener('mouseover', () => {
+
+    function activateSeriesCategories(){
         seriesCategoriesList.classList.remove('inactive');
     
         if(!moviesCategoriesList.classList.contains('inactive')){
             moviesCategoriesList.classList.add('inactive');
         };
-    });
+    };
+    seriesCategoriesBtn.addEventListener('mouseover', activateSeriesCategories);
+    seriesCategoriesBtn.addEventListener('click', activateSeriesCategories);
+
     seriesCategoriesList.addEventListener('mouseout', () => {
         seriesCategoriesList.classList.add('inactive'); 
     });
 }
 
 function homeLocation(){
-    console.log('Estas en el home');
-    numberOfCurrentPage = 1;
+        // numberOfCurrentPage = 1;
 
-    trendingMoviesSection.classList.remove('inactive');
-    generalMoviesSection.classList.remove('inactive');
-    generalSeriesSection.classList.remove('inactive');
-    recommendationsSection.classList.add('inactive');
-    generalSection.classList.add('inactive');
+        trendingMoviesSection.classList.remove('inactive');
+        generalMoviesSection.classList.remove('inactive');
+        generalSeriesSection.classList.remove('inactive');
+        recommendationsSection.classList.add('inactive');
+        generalSection.classList.add('inactive');
 
-    let random;
-
-    getPopularMoviesList(1);
-    getPopularSeriesList(1);
-    moreTrendsBtn.onclick = () => {location.hash = 'trending'};
-    moreMoviesBtn.onclick = () => {location.hash = 'movies'};
-    moreSeriesBtn.onclick = () => {location.hash = 'tv'};
-    trendingArrowLeftContainer.onmouseover = () => {
-        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
-    };
-    trendingArrowLeftContainer.onclick = () => {
-        scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
-    };
-    trendingArrowRightContainer.onmouseover = () => {
+        getPopularMoviesList(1);
+        getPopularSeriesList(1);
+        moreTrendsBtn.onclick = () => {location.hash = 'trending'};
+        moreMoviesBtn.onclick = () => {location.hash = 'movies'};
+        moreSeriesBtn.onclick = () => {location.hash = 'tv'};
+        trendingArrowLeftContainer.onmouseover = () => {
+            scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
+        };
+        trendingArrowLeftContainer.onclick = () => {
+            scrollTrendingList.scroll(scrollTrendingList.scrollLeft - window.innerWidth, 0);
+        };
+        trendingArrowRightContainer.onmouseover = () => {
+                scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
+        };
+        trendingArrowRightContainer.onclick = () => {
             scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
     };
-    trendingArrowRightContainer.onclick = () => {
-        scrollTrendingList.scroll(scrollTrendingList.scrollLeft + window.innerWidth, 0);
-};
 }
 
 function categoriesSection(){
@@ -235,7 +248,7 @@ function moviesSection(){
                 numberOfCurrentPage++;  
                 moviesSection()}
         }
-    
+    window.scrollTo(0, 0);    
 }
 
 function seriesSection(){
@@ -282,6 +295,7 @@ function seriesSection(){
                 console.log(numberOfCurrentPage); 
                 seriesSection()}
         } 
+        window.scrollTo(0, 0);
 }
 
 function moreInfoSection(){

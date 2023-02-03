@@ -245,7 +245,7 @@ async function getSerieInformation(serieId){
     serieOriginalTitleContainer.innerText = 'Original Title:';
     serieOriginalTitle. innerText = serie.original_name;
     serieLanguageContainer.innerText = 'Original Language:'
-    serieLanguage.innerText = serie.spoken_languages[0].name;
+    serieLanguage.innerText = serie.original_language;
     serieReleaseDateContainer.innerText = 'Release Date:';
     serieReleaseDate.innerText = serie.first_air_date;
     serieScoreContainer.innerText = 'Score:';
@@ -297,7 +297,7 @@ function generateContent(section, sectionContainer, contents){
         emptyContentMessage.classList.add('empty-content');
         sectionContainer.classList.add('empty_container')
 
-        emptyContentMessage.innerText = 'Sorry, theres no available information at the moment.  :(';
+        emptyContentMessage.innerText = 'Sorry, theres no available information at the moment  :(';
 
         sectionContainer.append(emptyContentMessage);
         
