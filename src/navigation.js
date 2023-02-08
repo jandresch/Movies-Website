@@ -29,7 +29,6 @@ function navigate(){
     seriesCategoriesList.classList.add('inactive'); 
 
     headerTitle.onclick = () => {location.hash = `home`};
-// matchMedia('(min-width: 320px)'
     searchBarBtn.onclick = () => {
         if(window.innerWidth <= 720){
             searchBarContainer.classList.toggle('display-bar');

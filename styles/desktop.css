@@ -214,6 +214,9 @@ main{
     display: flex;
     justify-content: space-between;
 }
+.trending-header hr{
+    display: block;
+}
 .main_movies_list-container{
     width: auto;
     height: fit-content;
