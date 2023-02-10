@@ -97,7 +97,7 @@ strong{
 .navbar{
     width: 100%;
     height: auto;
-    padding: 12px;
+    padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -183,7 +183,7 @@ strong{
     background-color: none;
 }
 .display-bar{ /* special styles */
-    width: 800px;
+    width: 60%;
     align-items: center;
     z-index: 2;
     border-radius: 15px;
@@ -241,7 +241,6 @@ main{
     overflow-y: visible;
     overscroll-behavior-x: contain;
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
 }
 .arrow_container{
     width: 28px;
@@ -306,13 +305,10 @@ main{
 }
 /* General Home Section */
 .general_section{
-    /* width: 88vw;
-    height: auto;
-    margin: 24px 0px; */
     width: 100%;
     height: auto;
     min-height: 88vh;
-    padding: 24px 6%;
+    padding: 12px 6%;
 }
 .general_section-header{
     width: 100%;
@@ -334,18 +330,18 @@ main{
     margin: 12px 0px;
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill, 180px);
+    grid-template-columns: repeat(auto-fill, 120px);
     grid-template-rows: auto;
     justify-items: center;
-    gap: 18px;
+    gap: 12px;
 }
 .general_section-container .card{
-    width: 180px;
-    height: 240px;
+    width: 120px;
+    height: 180px;
 }
 .general_section-container .card-name{
-    font-size: 1.2rem;
-    line-height: 1.6rem;
+    font-size: 1rem;
+    line-height: 1.4rem;
 }
 .general_section .btnsSection{
     width: 100%;
@@ -355,9 +351,9 @@ main{
     align-items: center;
 }
 .btnsSection button{
-    width: 40px;
-    height: 40px;
-    margin: 0px 16px;
+    width: 32px;
+    height: 32px;
+    margin: 0px 12px;
     border-radius: 50%;
 }
 /* movie details info */
@@ -371,19 +367,20 @@ main{
 .movie_general-container {
     width: 100%;
     height: auto;
+    margin-top: 12px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
 }
 .movie_general-container strong{
-    font-size: 2rem;
-    line-height: 2.4rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
     text-align: center;
     font-weight: var(--font-semi-bold);
-    margin: 12px 0px;
+    margin: 8px 0px;
     color: var(--yellow);
 }
 .movie_general-container li{
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     line-height: 1.8rem;
     list-style: disc;
     margin: 8px 0px 0px 16px;
@@ -401,10 +398,13 @@ main{
     width: 80%;
     height: auto;
 }
+.movie_left_section strong{
+    display: none;
+}
 .movie_right_section {
     width: 100%;
     height: auto;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -412,7 +412,7 @@ main{
 .movie_right_section h2, 
 .movie_right_section p,
 .movie_right_section ul{
-    margin: 12px 0px
+    margin: 8px 0px
 }
 /* recommendations section */
 
@@ -455,13 +455,13 @@ main{
 .footer_section{
     width: 100%;
     height: auto;
-    padding: 12px;
-    margin-top: 24px;
-    font-size: 1.6rem;
+    padding: 8px;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* position: absolute;
-    bottom: 0; */
+    grid-template-columns: 1fr min-content 1fr;
+    /* grid-template-columns: repeat(3, 1fr); */
     background-color: var(--dark-blue);
     border-top: solid 1px var(--yellow);
 }
@@ -480,7 +480,7 @@ main{
     place-self: center;
     width: auto;
     height: auto;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
 }
 .footer_section .date{
     place-self: center end;

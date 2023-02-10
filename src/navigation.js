@@ -52,15 +52,6 @@ function navigate(){
 };
 
 function showNavbarCategoriesList(){
-
-    // function activateMoviesCategories(){
-    //     moviesCategoriesList.classList.remove('inactive');
-    
-    //     if(!seriesCategoriesList.classList.contains('inactive')){
-    //         seriesCategoriesList.classList.add('inactive');
-    //     };
-    // };
-    // moviesCategoriesBtn.addEventListener('mouseover', activateMoviesCategories);
     moviesCategoriesBtn.addEventListener('mouseover', () => {
         moviesCategoriesList.classList.remove('inactive');
     
@@ -78,9 +69,9 @@ function showNavbarCategoriesList(){
     seriesCategoriesBtn.addEventListener('mouseover', () => {
         seriesCategoriesList.classList.remove('inactive');
     
-    if(!moviesCategoriesList.classList.contains('inactive')){
-        moviesCategoriesList.classList.add('inactive');
-    }
+        if(!moviesCategoriesList.classList.contains('inactive')){
+            moviesCategoriesList.classList.add('inactive');
+        }
     });
     seriesCategoriesBtn.addEventListener('click', () => {
         seriesCategoriesList.classList.toggle('inactive');
@@ -163,6 +154,7 @@ function categoriesSection(){
                 categoriesSection();
             }
         }
+    window.scrollTo(0, 0);
 };
 
 function searchSection(){
